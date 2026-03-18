@@ -1,73 +1,69 @@
-# Welcome to your Lovable project
+Frontend for Skin Aura:
 
-## Project info
+Variables:
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+PRODUCTS TABLE
 
-## How can I edit this code?
+id - number (primary key)
+name - string (product name)
+brand - string (brand/company name)
+safety - decimal 0 to 10 (safety score)
+eco - decimal 0 to 10 (eco score)
+image - string (image URL)
+category - string (Cleanser, Face Wash, Moisturizer, Serum, Sunscreen)
+description - string (short product description)
 
-There are several ways of editing your application.
 
-**Use Lovable**
+INGREDIENTS TABLE
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+product_id - number (links to products table)
+name - string (ingredient name)
+safety - string (only 3 values: low, moderate, high)
+description - string (what the ingredient does)
 
-Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
+AQI RECORDS TABLE
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+country - string
+state - string
+city - string
+station - string (monitoring station name)
+last_update - string (timestamp)
+latitude - number
+longitude - number
+pollutant_id - string (PM2.5, PM10, NO2, SO2, CO, OZONE)
+pollutant_min - number
+pollutant_max - number
+pollutant_avg - number
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+note: one station has multiple rows, one row per pollutant
 
-Follow these steps:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+COMPUTED (no separate table needed)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+AVAILABLE_CITIES - distinct cities from aqi_records, used in map search
+ALL_INGREDIENTS - distinct ingredient names, used in filter panel
+ALL_COMPANIES - distinct brand names, used in filter panel
+ALTERNATIVES - top 3 products by safety score in same category, excluding current product
 
-# Step 3: Install the necessary dependencies.
-npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+SCORE LOGIC
 
-**Edit a file directly in GitHub**
+safety bar color - light blue
+eco bar color - green
+score 8.5 to 10 - excellent
+score 7.0 to 8.4 - good
+score 5.0 to 6.9 - moderate
+score below 5 - poor
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+ingredient dot colors
+low = green
+moderate = yellow
+high = red
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+aqi map pin colors
+0 to 50 = green (Good)
+51 to 100 = yellow (Moderate)
+101 to 200 = orange (Unhealthy)
+201 to 300 = red (Very Unhealthy)
+300+ = purple (Hazardous)
