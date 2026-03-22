@@ -5,9 +5,10 @@ interface NavbarProps {
   searchQuery: string;
   onSearchChange: (q: string) => void;
   onOpenFilters: () => void;
+  activeFilterCount?: number;
 }
 
-const Navbar = ({ searchQuery, onSearchChange, onOpenFilters }: NavbarProps) =>
+const Navbar = ({ searchQuery, onSearchChange, onOpenFilters, activeFilterCount = 0 }: NavbarProps) =>
 <nav className="fixed top-0 w-full z-50 glass-nav px-4 md:px-6 py-4 flex items-center justify-between gap-4">
     <Link to="/" className="flex items-center gap-2 shrink-0">
       <div className="w-8 h-8 bg-primary rounded-lg rotate-12 flex items-center justify-center shadow-sm">
@@ -31,6 +32,11 @@ const Navbar = ({ searchQuery, onSearchChange, onOpenFilters }: NavbarProps) =>
       
         <Sliders size={14} />
         <span className="hidden sm:inline">Filters</span>
+        {activeFilterCount > 0 && (
+          <span className="w-4 h-4 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
+            {activeFilterCount}
+          </span>
+        )}
       </button>
     </div>
 

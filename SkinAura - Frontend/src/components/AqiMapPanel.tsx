@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import {
-  MOCK_AQI_RECORDS, AVAILABLE_CITIES, groupByStation,
+  MOCK_AQI_RECORDS, groupByStation,
   getAqiColor, getAqiLevel, getSkinSeverity, findNearestCity,
-  type GroupedStation,
+  type GroupedStation, type AqiRecord,
 } from "@/data/mockAqiData";
 import { MOCK_PRODUCTS } from "@/data/mockProducts";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -38,15 +38,54 @@ const AqiMapPanel = ({ isOpen, onClose }: AqiMapPanelProps) => {
   const [selectedStation, setSelectedStation] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [geoAttempted, setGeoAttempted] = useState(false);
+  const [allStations, setAllStations] = useState<GroupedStation[]>(() => groupByStation(MOCK_AQI_RECORDS));
+  const [usingLiveData, setUsingLiveData] = useState(false);
   const navigate = useNavigate();
 
-  // Simulate loading
+  // Fetch live AQI data from data.gov.in
   useEffect(() => {
-    if (isOpen) {
-      setIsLoading(true);
-      const t = setTimeout(() => setIsLoading(false), 800);
-      return () => clearTimeout(t);
+    if (!isOpen) return;
+
+    const apiKey = import.meta.env.VITE_AQI_API_KEY;
+    if (!apiKey) {
+      // No API key — stay on mock data
+      setIsLoading(false);
+      return;
     }
+
+    setIsLoading(true);
+    const url = `https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69?api-key=${apiKey}&format=json&limit=500`;
+
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error("API error");
+        return res.json();
+      })
+      .then((data) => {
+        const records: AqiRecord[] = (data.records || []).map((r: Record<string, string>) => ({
+          country: r.country ?? "",
+          state: r.state ?? "",
+          city: r.city ?? "",
+          station: r.station ?? "",
+          last_update: r.last_update ?? "",
+          latitude: parseFloat(r.latitude) || 0,
+          longitude: parseFloat(r.longitude) || 0,
+          pollutant_id: r.pollutant_id ?? "",
+          pollutant_min: parseFloat(r.pollutant_min) || 0,
+          pollutant_max: parseFloat(r.pollutant_max) || 0,
+          pollutant_avg: parseFloat(r.pollutant_avg) || 0,
+        }));
+        if (records.length > 0) {
+          setAllStations(groupByStation(records));
+          setUsingLiveData(true);
+        }
+      })
+      .catch(() => {
+        // CORS or network error — silently fall back to mock data
+        setAllStations(groupByStation(MOCK_AQI_RECORDS));
+        setUsingLiveData(false);
+      })
+      .finally(() => setIsLoading(false));
   }, [isOpen]);
 
   // Auto-detect location
@@ -64,14 +103,16 @@ const AqiMapPanel = ({ isOpen, onClose }: AqiMapPanelProps) => {
     }
   }, [isOpen, geoAttempted]);
 
-  const allStations = useMemo(() => groupByStation(MOCK_AQI_RECORDS), []);
-
   const filteredStations = useMemo(() => {
     if (!cityFilter) return allStations;
     return allStations.filter(s => s.city.toLowerCase().includes(cityFilter.toLowerCase()));
   }, [allStations, cityFilter]);
 
-  const filteredCities = AVAILABLE_CITIES.filter(c =>
+  const availableCities = useMemo(() =>
+    [...new Set(allStations.map(s => s.city))].sort()
+  , [allStations]);
+
+  const filteredCities = availableCities.filter(c =>
     c.toLowerCase().includes(cityFilter.toLowerCase())
   );
 
@@ -126,6 +167,10 @@ const AqiMapPanel = ({ isOpen, onClose }: AqiMapPanelProps) => {
                   <MapIcon size={16} className="text-primary" />
                 </div>
                 <h2 className="text-lg font-bold text-foreground">AQI & Skin Protection</h2>
+                {usingLiveData
+                  ? <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium">● Live</span>
+                  : <span className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-medium">Demo data</span>
+                }
               </div>
               <button onClick={onClose} className="p-2 rounded-xl hover:bg-muted skin-transition">
                 <X size={18} />

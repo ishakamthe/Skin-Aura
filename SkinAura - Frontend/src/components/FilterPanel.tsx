@@ -3,9 +3,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown } from "lucide-react";
 import { ALL_INGREDIENTS, ALL_COMPANIES } from "@/data/mockProducts";
 
+export interface ActiveFilters {
+  includeIngredients: string[];
+  excludeIngredients: string[];
+  includeCompanies: string[];
+  excludeCompanies: string[];
+  minSafety: number | null;
+  minEco: number | null;
+}
+
 interface FilterPanelProps {
   isOpen: boolean;
   onClose: () => void;
+  onApply: (filters: ActiveFilters) => void;
+  currentFilters: ActiveFilters;
 }
 
 const FilterDropdown = ({
@@ -76,13 +87,13 @@ const FilterDropdown = ({
   );
 };
 
-const FilterPanel = ({ isOpen, onClose }: FilterPanelProps) => {
-  const [includeIngredients, setIncludeIngredients] = useState<string[]>([]);
-  const [excludeIngredients, setExcludeIngredients] = useState<string[]>([]);
-  const [includeCompanies, setIncludeCompanies] = useState<string[]>([]);
-  const [excludeCompanies, setExcludeCompanies] = useState<string[]>([]);
-  const [minSafety, setMinSafety] = useState<number | null>(null);
-  const [minEco, setMinEco] = useState<number | null>(null);
+const FilterPanel = ({ isOpen, onClose, onApply, currentFilters }: FilterPanelProps) => {
+  const [includeIngredients, setIncludeIngredients] = useState<string[]>(currentFilters.includeIngredients);
+  const [excludeIngredients, setExcludeIngredients] = useState<string[]>(currentFilters.excludeIngredients);
+  const [includeCompanies, setIncludeCompanies] = useState<string[]>(currentFilters.includeCompanies);
+  const [excludeCompanies, setExcludeCompanies] = useState<string[]>(currentFilters.excludeCompanies);
+  const [minSafety, setMinSafety] = useState<number | null>(currentFilters.minSafety);
+  const [minEco, setMinEco] = useState<number | null>(currentFilters.minEco);
 
   const toggle = (list: string[], setList: (l: string[]) => void, item: string) => {
     setList(list.includes(item) ? list.filter((i) => i !== item) : [...list, item]);
@@ -96,6 +107,18 @@ const FilterPanel = ({ isOpen, onClose }: FilterPanelProps) => {
     setMinSafety(null);
     setMinEco(null);
   };
+
+  const handleApply = () => {
+    onApply({ includeIngredients, excludeIngredients, includeCompanies, excludeCompanies, minSafety, minEco });
+    onClose();
+  };
+
+  const handleClearAll = () => {
+    clearAll();
+    onApply({ includeIngredients: [], excludeIngredients: [], includeCompanies: [], excludeCompanies: [], minSafety: null, minEco: null });
+  };
+
+  const activeCount = includeIngredients.length + excludeIngredients.length + includeCompanies.length + excludeCompanies.length + (minSafety ? 1 : 0) + (minEco ? 1 : 0);
 
   return (
     <AnimatePresence>
@@ -116,7 +139,9 @@ const FilterPanel = ({ isOpen, onClose }: FilterPanelProps) => {
             className="fixed right-0 top-0 h-full w-full max-w-md bg-card z-[70] shadow-2xl p-6 md:p-8 overflow-y-auto"
           >
             <div className="flex items-center justify-between mb-10">
-              <h2 className="text-2xl font-bold">Filters</h2>
+              <h2 className="text-2xl font-bold">
+                Filters {activeCount > 0 && <span className="text-base font-semibold text-primary ml-1">({activeCount} active)</span>}
+              </h2>
               <button onClick={onClose} className="p-2 hover:bg-muted rounded-full skin-transition">
                 <X size={20} />
               </button>
@@ -210,8 +235,8 @@ const FilterPanel = ({ isOpen, onClose }: FilterPanelProps) => {
               </section>
 
               <div className="pt-4 space-y-3">
-                <button className="w-full py-4 btn-primary-skin">Apply Filters</button>
-                <button onClick={clearAll} className="w-full text-muted-foreground font-medium hover:underline text-sm">
+                <button onClick={handleApply} className="w-full py-4 btn-primary-skin">Apply Filters</button>
+                <button onClick={handleClearAll} className="w-full text-muted-foreground font-medium hover:underline text-sm">
                   Clear all filters
                 </button>
               </div>
