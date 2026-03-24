@@ -21,6 +21,7 @@ for ing in INGREDIENTS_DATA["ingredients"]:
 def home():
     return "SkinAura API running"
 
+
 @app.route("/products")
 def get_products():
     """Products with ingredients embedded — used for filtering and display"""
