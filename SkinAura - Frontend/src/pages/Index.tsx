@@ -22,33 +22,31 @@ const DEFAULT_FILTERS: ActiveFilters = {
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  // Default to loading true so skeletons show while fetching
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>(DEFAULT_FILTERS);
- 
-  // 1. ADD STATE FOR PRODUCTS
   const [products, setProducts] = useState<any[]>([]);
+
   const navigate = useNavigate();
 
-  // 2. FETCH DATA FROM YOUR RENDER BACKEND ON MOUNT
+  // ✅ FIXED FETCH
   useEffect(() => {
     setIsLoading(true);
-   
-    // ⚠️ REPLACE THIS WITH YOUR ACTUAL RENDER URL ⚠️
+
     const backendUrl = "https://skin-aura.onrender.com";
 
-    fetch(backendUrl)
+    fetch(`${backendUrl}/products`) // 🔥 FIX HERE
       .then((res) => {
         if (!res.ok) throw new Error("Network response failed");
         return res.json();
       })
       .then((data) => {
+        console.log("Products:", data); // optional debug
         setProducts(data);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching products from backend:", error);
+        console.error("Error fetching products:", error);
         setIsLoading(false);
       });
   }, []);
@@ -62,55 +60,61 @@ const Index = () => {
     (activeFilters.minEco ? 1 : 0);
 
   const filteredProducts = useMemo(() => {
-    // 3. USE 'products' STATE INSTEAD OF MOCK DATA
     return products.filter((p) => {
-      // Search
       const matchesSearch =
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.brand.toLowerCase().includes(searchQuery.toLowerCase());
+
       if (!matchesSearch) return false;
 
-      // Min safety score
       if (activeFilters.minSafety !== null && p.safety < activeFilters.minSafety) return false;
-
-      // Min eco score
       if (activeFilters.minEco !== null && p.eco < activeFilters.minEco) return false;
 
-      // Include companies
-      if (activeFilters.includeCompanies.length > 0 && !activeFilters.includeCompanies.includes(p.brand)) return false;
+      if (
+        activeFilters.includeCompanies.length > 0 &&
+        !activeFilters.includeCompanies.includes(p.brand)
+      )
+        return false;
 
-      // Exclude companies
-      if (activeFilters.excludeCompanies.length > 0 && activeFilters.excludeCompanies.includes(p.brand)) return false;
+      if (
+        activeFilters.excludeCompanies.length > 0 &&
+        activeFilters.excludeCompanies.includes(p.brand)
+      )
+        return false;
 
-      const ingredientNames = p.ingredients.map((i: any) => i.name);
+      // ✅ SAFE INGREDIENT HANDLING (no crash)
+      const ingredientNames = p.ingredients?.map((i: any) => i.name) || [];
 
-      // Include ingredients — product must have ALL selected
       if (activeFilters.includeIngredients.length > 0) {
-        const hasAll = activeFilters.includeIngredients.every((ing) => ingredientNames.includes(ing));
+        const hasAll = activeFilters.includeIngredients.every((ing) =>
+          ingredientNames.includes(ing)
+        );
         if (!hasAll) return false;
       }
 
-      // Exclude ingredients — product must have NONE of selected
       if (activeFilters.excludeIngredients.length > 0) {
-        const hasAny = activeFilters.excludeIngredients.some((ing) => ingredientNames.includes(ing));
+        const hasAny = activeFilters.excludeIngredients.some((ing) =>
+          ingredientNames.includes(ing)
+        );
         if (hasAny) return false;
       }
 
       return true;
     });
-  }, [searchQuery, activeFilters, products]); // Add 'products' to dependency array
+  }, [searchQuery, activeFilters, products]);
 
-  // Reset to page 1 when search or filters change
   useEffect(() => {
     setCurrentPage(1);
+
     if (searchQuery && products.length > 0) {
       setIsLoading(true);
-      const t = setTimeout(() => setIsLoading(false), 500);
+      const t = setTimeout(() => setIsLoading(false), 300);
       return () => clearTimeout(t);
     }
   }, [searchQuery, activeFilters, products.length]);
 
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
@@ -122,7 +126,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -137,66 +141,21 @@ const Index = () => {
         currentFilters={activeFilters}
       />
 
-      <main className="pt-32 md:pt-40 px-4 md:px-6 max-w-4xl mx-auto pb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-          className="text-center mb-12 md:mb-16">
-
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+      <main className="pt-32 px-4 max-w-4xl mx-auto pb-12">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-1 rounded-full text-sm mb-4">
             <Sparkles size={14} />
             AI-Powered Ingredient Analysis
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-tight">
+
+          <h1 className="text-3xl font-bold mb-2">
             Your skin deserves clarity.
           </h1>
-          <p className="text-muted-foreground text-base md:text-lg max-w-md mx-auto">
-            Search trending products for safety and sustainability scores.
-          </p>
-        </motion.div>
 
-        {/* Active filter tags */}
-        {activeFilterCount > 0 && (
-          <div className="flex flex-wrap gap-2 mb-6">
-            {activeFilters.includeIngredients.map((ing) => (
-              <span key={ing} className="px-3 py-1 rounded-full bg-green-100 text-green-800 text-xs font-medium flex items-center gap-1">
-                ✓ {ing}
-              </span>
-            ))}
-            {activeFilters.excludeIngredients.map((ing) => (
-              <span key={ing} className="px-3 py-1 rounded-full bg-red-100 text-red-800 text-xs font-medium flex items-center gap-1">
-                ✕ {ing}
-              </span>
-            ))}
-            {activeFilters.includeCompanies.map((c) => (
-              <span key={c} className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                {c}
-              </span>
-            ))}
-            {activeFilters.excludeCompanies.map((c) => (
-              <span key={c} className="px-3 py-1 rounded-full bg-red-100 text-red-800 text-xs font-medium">
-                ✕ {c}
-              </span>
-            ))}
-            {activeFilters.minSafety && (
-              <span className="px-3 py-1 rounded-full bg-sky-100 text-sky-800 text-xs font-medium">
-                Safety ≥ {activeFilters.minSafety}
-              </span>
-            )}
-            {activeFilters.minEco && (
-              <span className="px-3 py-1 rounded-full bg-green-100 text-green-800 text-xs font-medium">
-                Eco ≥ {activeFilters.minEco}
-              </span>
-            )}
-            <button
-              onClick={() => setActiveFilters(DEFAULT_FILTERS)}
-              className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-medium hover:bg-muted/80 skin-transition"
-            >
-              Clear all
-            </button>
-          </div>
-        )}
+          <p className="text-muted-foreground">
+            Search products for safety & sustainability.
+          </p>
+        </div>
 
         <div className="space-y-3">
           {isLoading ? (
@@ -206,7 +165,7 @@ const Index = () => {
               <SkeletonCard />
             </>
           ) : (
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               {paginatedProducts.length > 0 ? (
                 <>
                   {paginatedProducts.map((p, i) => (
@@ -219,27 +178,16 @@ const Index = () => {
                   ))}
 
                   {totalPages > 1 && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="flex items-center justify-center gap-2 pt-6">
-
+                    <div className="flex justify-center gap-2 pt-6">
                       <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
-                        className="w-9 h-9 flex items-center justify-center rounded-xl border border-border text-muted-foreground hover:text-foreground hover:bg-muted skin-transition disabled:opacity-30 disabled:cursor-not-allowed">
-                        <ChevronLeft size={16} />
+                      >
+                        <ChevronLeft />
                       </button>
 
                       {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                        <button
-                          key={page}
-                          onClick={() => handlePageChange(page)}
-                          className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-semibold skin-transition border ${
-                            currentPage === page
-                              ? "bg-primary text-primary-foreground border-primary"
-                              : "border-border text-muted-foreground hover:text-foreground hover:bg-muted"
-                          }`}>
+                        <button key={page} onClick={() => handlePageChange(page)}>
                           {page}
                         </button>
                       ))}
@@ -247,33 +195,17 @@ const Index = () => {
                       <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages}
-                        className="w-9 h-9 flex items-center justify-center rounded-xl border border-border text-muted-foreground hover:text-foreground hover:bg-muted skin-transition disabled:opacity-30 disabled:cursor-not-allowed">
-                        <ChevronRight size={16} />
+                      >
+                        <ChevronRight />
                       </button>
-                    </motion.div>
+                    </div>
                   )}
-
-                  <p className="text-center text-xs text-muted-foreground pt-2">
-                    Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)} of {filteredProducts.length} products
-                  </p>
                 </>
               ) : (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-center py-16">
-                  <SlidersHorizontal className="mx-auto mb-4 text-muted-foreground" size={32} />
-                  <p className="text-muted-foreground text-lg">No products match your filters</p>
-                  <p className="text-muted-foreground/60 text-sm mt-2">Try adjusting your search or filters.</p>
-                  {activeFilterCount > 0 && (
-                    <button
-                      onClick={() => setActiveFilters(DEFAULT_FILTERS)}
-                      className="mt-4 text-primary font-medium hover:underline text-sm"
-                    >
-                      Clear all filters
-                    </button>
-                  )}
-                </motion.div>
+                <div className="text-center py-10">
+                  <SlidersHorizontal className="mx-auto mb-3" />
+                  <p>No products found</p>
+                </div>
               )}
             </AnimatePresence>
           )}
@@ -286,4 +218,3 @@ const Index = () => {
 };
 
 export default Index;
-
