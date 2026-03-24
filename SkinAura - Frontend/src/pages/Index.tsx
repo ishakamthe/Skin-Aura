@@ -34,21 +34,20 @@ const Index = () => {
   // 2. FETCH DATA FROM YOUR RENDER BACKEND ON MOUNT
   useEffect(() => {
     setIsLoading(true);
-   
-    // ⚠️ REPLACE THIS WITH YOUR ACTUAL RENDER URL ⚠️
-    const backendUrl = "https://skin-aura.onrender.com";
-
-    fetch(backendUrl)
+    const backendUrl = import.meta.env.VITE_API_URL ?? "https://skin-aura.onrender.com";
+    fetch(`${backendUrl}/products`)
       .then((res) => {
-        if (!res.ok) throw new Error("Network response failed");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
-      .then((data) => {
-        setProducts(data);
+      .then((data: any[]) => {
+        // Ingredients are NOT fetched here — they load on the product detail page.
+        // Fetching 400 ingredient lists in parallel would timeout Render's free tier.
+        setProducts(Array.isArray(data) ? data.map(p => ({ ...p, ingredients: p.ingredients ?? [] })) : []);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching products from backend:", error);
+        console.error("Error fetching products:", error);
         setIsLoading(false);
       });
   }, []);
@@ -137,24 +136,54 @@ const Index = () => {
         currentFilters={activeFilters}
       />
 
-      <main className="pt-32 md:pt-40 px-4 md:px-6 max-w-4xl mx-auto pb-12">
+      {/* ── Hero with background video ── */}
+      <section className="relative h-[92vh] min-h-[560px] flex flex-col items-center justify-center overflow-hidden">
+        {/* Background video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/hero-video.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        {/* Gradient overlay — top strong (for navbar), centre soft, bottom fades to background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/30 to-background pointer-events-none" />
+        {/* Radial vignette for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(247,243,238,0.55)_100%)] pointer-events-none" />
+
+        {/* Hero text */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-          className="text-center mb-12 md:mb-16">
-
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+          transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
+          className="relative z-10 text-center px-4 max-w-2xl"
+        >
+          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm text-foreground border border-foreground/15 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 shadow-sm">
             <Sparkles size={14} />
             AI-Powered Ingredient Analysis
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-5 leading-tight drop-shadow-sm">
             Your skin deserves clarity.
           </h1>
-          <p className="text-muted-foreground text-base md:text-lg max-w-md mx-auto">
+          <p className="text-foreground/70 text-base md:text-xl max-w-md mx-auto leading-relaxed">
             Search trending products for safety and sustainability scores.
           </p>
+          {/* Scroll cue */}
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+            className="mt-12 flex justify-center"
+          >
+            <svg className="w-6 h-6 text-foreground/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </motion.div>
         </motion.div>
+      </section>
+
+      {/* ── Product list section ── */}
+      <main className="px-4 md:px-6 max-w-4xl mx-auto pb-12 pt-10">
 
         {/* Active filter tags */}
         {activeFilterCount > 0 && (
@@ -222,8 +251,9 @@ const Index = () => {
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="flex items-center justify-center gap-2 pt-6">
+                      className="flex items-center justify-center gap-1.5 pt-6 flex-wrap">
 
+                      {/* Prev */}
                       <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
@@ -231,19 +261,30 @@ const Index = () => {
                         <ChevronLeft size={16} />
                       </button>
 
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                        <button
-                          key={page}
-                          onClick={() => handlePageChange(page)}
-                          className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-semibold skin-transition border ${
-                            currentPage === page
-                              ? "bg-primary text-primary-foreground border-primary"
-                              : "border-border text-muted-foreground hover:text-foreground hover:bg-muted"
-                          }`}>
-                          {page}
-                        </button>
-                      ))}
+                      {/* Windowed page numbers — max 5 visible */}
+                      {(() => {
+                        const half = 2;
+                        let start = Math.max(1, currentPage - half);
+                        let end   = Math.min(totalPages, start + 4);
+                        if (end - start < 4) start = Math.max(1, end - 4);
+                        const items: React.ReactNode[] = [];
+                        if (start > 1) { items.push(<button key={1} onClick={() => handlePageChange(1)} className="w-9 h-9 flex items-center justify-center rounded-xl text-sm font-semibold skin-transition border border-border text-muted-foreground hover:text-foreground hover:bg-muted">1</button>); }
+                        if (start > 2) { items.push(<span key="el1" className="w-9 h-9 flex items-center justify-center text-muted-foreground text-sm select-none">...</span>); }
+                        for (let pg = start; pg <= end; pg++) {
+                          const p = pg;
+                          items.push(
+                            <button key={p} onClick={() => handlePageChange(p)}
+                              className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-semibold skin-transition border ${
+                                currentPage === p ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:text-foreground hover:bg-muted"
+                              }`}>{p}</button>
+                          );
+                        }
+                        if (end < totalPages - 1) { items.push(<span key="el2" className="w-9 h-9 flex items-center justify-center text-muted-foreground text-sm select-none">...</span>); }
+                        if (end < totalPages) { items.push(<button key={totalPages} onClick={() => handlePageChange(totalPages)} className="w-9 h-9 flex items-center justify-center rounded-xl text-sm font-semibold skin-transition border border-border text-muted-foreground hover:text-foreground hover:bg-muted">{totalPages}</button>); }
+                        return items;
+                      })()}
 
+                      {/* Next */}
                       <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages}
@@ -286,4 +327,3 @@ const Index = () => {
 };
 
 export default Index;
-

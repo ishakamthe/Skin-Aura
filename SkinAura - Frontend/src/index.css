@@ -120,3 +120,35 @@
     @apply bg-foreground/90;
   }
 }
+
+/* ── Admin UI component classes ── */
+@layer components {
+  .admin-card {
+    @apply bg-surface border border-border rounded-2xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-skin-mint text-foreground hover:opacity-90;
+  }
+
+  .btn-ghost {
+    @apply btn text-muted-foreground hover:bg-muted hover:text-foreground;
+  }
+
+  .btn-danger {
+    @apply btn bg-destructive/10 text-destructive border border-destructive/20 hover:bg-destructive/20;
+  }
+
+  .input {
+    @apply w-full bg-muted border border-border rounded-xl px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground
+           focus:outline-none focus:border-skin-sky focus:ring-2 focus:ring-skin-sky/20 transition-colors;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold;
+  }
+}

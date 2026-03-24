@@ -1,4 +1,4 @@
-import { Search, Sliders, HelpCircle } from "lucide-react";
+import { Search, Sliders, HelpCircle, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface NavbarProps {
@@ -9,22 +9,24 @@ interface NavbarProps {
 }
 
 const Navbar = ({ searchQuery, onSearchChange, onOpenFilters, activeFilterCount = 0 }: NavbarProps) =>
-<nav className="fixed top-0 w-full z-50 glass-nav px-4 md:px-6 py-4 flex items-center justify-between gap-4">
-    <Link to="/" className="flex items-center gap-2 shrink-0">
-      <div className="w-8 h-8 bg-primary rounded-lg rotate-12 flex items-center justify-center shadow-sm">
-        <span className="text-primary-foreground font-bold text-lg -rotate-12">S</span>
-      </div>
+<nav className="fixed top-0 w-full z-50 glass-nav px-4 md:px-6 py-3 flex items-center justify-between gap-4">
+    <Link to="/" className="flex items-center gap-2.5 shrink-0">
+      <img
+        src="/logo.png"
+        alt="SkinAura"
+        className="w-8 h-8 object-contain"
+      />
       <span className="text-xl font-bold tracking-tight text-foreground hidden sm:inline">SkinAura</span>
     </Link>
 
     <div className="flex-1 max-w-xl relative group">
-      <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary skin-transition pointer-events-none" size={18} />
+      <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary skin-transition pointer-events-none" size={17} />
       <input
       type="text"
       value={searchQuery}
       onChange={(e) => onSearchChange(e.target.value)}
       placeholder="Search skincare products..."
-      className="input-skin pl-10 pr-28 mx-px" />
+      className="input-skin pl-11 pr-28 mx-px" />
     
       <button
       onClick={onOpenFilters}
@@ -40,14 +42,25 @@ const Navbar = ({ searchQuery, onSearchChange, onOpenFilters, activeFilterCount 
       </button>
     </div>
 
-    <Link
-    to="/help"
-    className="flex items-center gap-2 text-muted-foreground hover:text-foreground font-medium skin-transition shrink-0">
-    
-      <HelpCircle size={18} />
-      <span className="hidden sm:inline">Help</span>
-    </Link>
+    <div className="flex items-center gap-3 shrink-0">
+      <Link
+      to="/help"
+      className="flex items-center gap-2 text-muted-foreground hover:text-foreground font-medium skin-transition">
+        <HelpCircle size={18} />
+        <span className="hidden sm:inline">Help</span>
+      </Link>
+
+      <Link
+      to="/admin"
+      className="flex items-center gap-2 text-muted-foreground hover:text-foreground font-medium skin-transition"
+      title="Admin Panel">
+        <Settings size={18} />
+        <span className="hidden md:inline">Admin</span>
+      </Link>
+    </div>
   </nav>;
 
 
 export default Navbar;
+
+

@@ -10,6 +10,13 @@ import {
   type GroupedStation, type AqiRecord,
 } from "@/data/mockAqiData";
 import { MOCK_PRODUCTS } from "@/data/mockProducts";
+
+const API_BASE = import.meta.env.VITE_API_URL ?? "http://localhost:5000";
+
+interface BackendProduct {
+  id: number; name: string; brand: string; safety: number;
+  eco: number; image: string; category: string; description: string;
+}
 import { Skeleton } from "@/components/ui/skeleton";
 
 const API_KEY = "579b464db66ec23bdd000001431354d2fb64423470cd33c84679ad6d";
@@ -154,16 +161,72 @@ const AqiMapPanel = ({ isOpen, onClose }: AqiMapPanelProps) => {
     c.toLowerCase().includes(cityFilter.toLowerCase())
   );
 
-  const worstAvg = filteredStations.length
-    ? Math.max(...filteredStations.map(s => s.dominantAvg))
-    : 0;
+  const [allProducts, setAllProducts] = useState<BackendProduct[]>([]);
+
+  // Fetch products from backend once on mount
+  useEffect(() => {
+    fetch(`${API_BASE}/products`)
+      .then((r) => r.json())
+      .then(setAllProducts)
+      .catch(() => setAllProducts(MOCK_PRODUCTS));
+  }, []);
+
+  const productPool = allProducts.length > 0 ? allProducts : MOCK_PRODUCTS;
+
+  // Everything is derived from selectedStation so recommendations
+  // update instantly when user clicks a different station or city
+  const activeStation = selectedStation ?? filteredStations[0] ?? null;
+
+  const dominantPollutant = useMemo(() => {
+    if (!activeStation || !activeStation.pollutants.length) return null;
+    return activeStation.pollutants.reduce((a, b) => a.aqi > b.aqi ? a : b);
+  }, [activeStation]);
+
+  const worstAvg = activeStation?.dominantAvg ?? 0;
   const severity = getSkinSeverity(worstAvg);
 
+  // Pick categories based on which pollutant is worst and its skin effect
   const recommendedProducts = useMemo(() => {
-    if (severity === "low") return MOCK_PRODUCTS.filter(p => ["Cleanser", "Face Wash"].includes(p.category)).slice(0, 3);
-    if (severity === "moderate") return MOCK_PRODUCTS.filter(p => ["Serum", "Sunscreen", "Moisturizer"].includes(p.category)).slice(0, 3);
-    return MOCK_PRODUCTS.filter(p => ["Moisturizer", "Serum", "Sunscreen"].includes(p.category)).slice(0, 3);
-  }, [severity]);
+    const pid = dominantPollutant?.pollutant_id ?? "";
+    const aqi = dominantPollutant?.aqi ?? 0;
+
+    let categories: string[] = [];
+
+    if (aqi === 0 || severity === "low") {
+      // Air is clean — basic cleansing is enough
+      categories = ["Cleanser", "Face Wash"];
+    } else if (pid === "PM2.5" || pid === "PM10") {
+      // Particles penetrate pores — prioritise cleansing then barrier repair
+      categories = severity === "high"
+        ? ["Cleanser", "Face Wash", "Serum"]
+        : ["Cleanser", "Face Wash"];
+    } else if (pid === "NO2") {
+      // Oxidative stress, wrinkles — antioxidant serums (Vit C)
+      categories = ["Serum", "Moisturizer"];
+    } else if (pid === "OZONE") {
+      // Depletes Vit E/C, UV damage — SPF and barrier support
+      categories = ["Sunscreen", "Moisturizer", "Serum"];
+    } else if (pid === "SO2") {
+      // Dryness and irritation — gentle cleanse + heavy hydration
+      categories = ["Moisturizer", "Cleanser"];
+    } else if (pid === "CO") {
+      // Reduced oxygen — brightening serums and moisturisers
+      categories = ["Serum", "Moisturizer"];
+    } else {
+      // NH3 or unknown — general protection
+      categories = ["Moisturizer", "Serum", "Sunscreen"];
+    }
+
+    const picks = productPool
+      .filter(p => categories.includes(p.category))
+      .sort((a, b) => b.safety - a.safety) // highest safety first
+      .slice(0, 3);
+
+    // If somehow no match, fall back to top-rated products overall
+    return picks.length > 0
+      ? picks
+      : productPool.sort((a, b) => b.safety - a.safety).slice(0, 3);
+  }, [dominantPollutant, severity, productPool]);
 
   return (
     <AnimatePresence>
@@ -432,7 +495,10 @@ const AqiMapPanel = ({ isOpen, onClose }: AqiMapPanelProps) => {
                 <div>
                   <h4 className="font-semibold text-sm text-foreground mb-1">Recommended Skin Protection</h4>
                   <p className="text-xs text-muted-foreground mb-3">
-                    Based on {getAqiLevel(worstAvg)} air quality (worst avg: {worstAvg})
+                    {dominantPollutant && worstAvg > 0
+                      ? <>Based on high <span className="font-semibold text-foreground">{dominantPollutant.pollutant_id}</span> ({getAqiLevel(worstAvg)} · AQI {worstAvg})</>
+                      : <>Air quality is {getAqiLevel(worstAvg)} · AQI {worstAvg}</>
+                    }
                   </p>
                   <div className="space-y-2">
                     {recommendedProducts.map((product) => (

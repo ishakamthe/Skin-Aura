@@ -60,6 +60,23 @@ export default {
           moderate: "hsl(var(--skin-moderate))",
           danger: "hsl(var(--skin-danger))",
         },
+        /* ── Admin UI semantic tokens (mapped to SkinAura palette) ── */
+        bg: "hsl(var(--background))",
+        surface: "hsl(var(--card))",
+        "surface-2": "hsl(var(--muted))",
+        "surface-3": "hsl(40 20% 90%)",
+        "border-2": "hsl(0 0% 0% / 0.10)",
+        "text-1": "hsl(var(--foreground))",
+        "text-2": "hsl(var(--muted-foreground))",
+        "text-3": "hsl(0 0% 55%)",
+        "admin-accent": {
+          DEFAULT: "hsl(var(--skin-mint))",
+          dim: "hsl(152 40% 65%)",
+        },
+        danger: "hsl(var(--destructive))",
+        "danger-dim": "hsl(0 70% 45%)",
+        warning: "hsl(var(--skin-moderate))",
+        info: "hsl(200 70% 60%)",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
