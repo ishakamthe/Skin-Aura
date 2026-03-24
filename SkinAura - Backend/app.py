@@ -1,13 +1,9 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from products import products   # 👈 IMPORT DATA
+from products import products
 
 app = Flask(__name__)
 CORS(app)
-
-@app.route("/")
-def home():
-    return "API is running"
 
 @app.route("/products")
 def get_products():
