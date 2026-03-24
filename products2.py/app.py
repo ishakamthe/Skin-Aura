@@ -1,0 +1,29 @@
+from flask import Flask, jsonify
+from flask_cors import CORS
+
+from product import PRODUCTS_DATA
+from ingredient import INGREDIENTS_DATA
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route("/")
+def home():
+    return "SkinAura API running"
+
+@app.route("/products")
+def get_products():
+    return jsonify(PRODUCTS_DATA["products"])
+
+@app.route("/ingredients/<int:product_id>")
+def get_ingredients(product_id):
+    data = [
+        i for i in INGREDIENTS_DATA["ingredients"]
+        if i["product_id"] == product_id
+    ]
+    return jsonify(data)
+
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

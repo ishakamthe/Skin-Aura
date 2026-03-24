@@ -7,7 +7,6 @@ import FilterPanel, { type ActiveFilters } from "@/components/FilterPanel";
 import ProductCard from "@/components/ProductCard";
 import SkeletonCard from "@/components/SkeletonCard";
 import SkinFooter from "@/components/SkinFooter";
-import { MOCK_PRODUCTS } from "@/data/mockProducts";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -23,10 +22,36 @@ const DEFAULT_FILTERS: ActiveFilters = {
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  // Default to loading true so skeletons show while fetching
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>(DEFAULT_FILTERS);
+ 
+  // 1. ADD STATE FOR PRODUCTS
+  const [products, setProducts] = useState<any[]>([]);
   const navigate = useNavigate();
+
+  // 2. FETCH DATA FROM YOUR RENDER BACKEND ON MOUNT
+  useEffect(() => {
+    setIsLoading(true);
+   
+    // ⚠️ REPLACE THIS WITH YOUR ACTUAL RENDER URL ⚠️
+    const backendUrl = "https://skin-aura.onrender.com";
+
+    fetch(backendUrl)
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response failed");
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching products from backend:", error);
+        setIsLoading(false);
+      });
+  }, []);
 
   const activeFilterCount =
     activeFilters.includeIngredients.length +
@@ -37,7 +62,8 @@ const Index = () => {
     (activeFilters.minEco ? 1 : 0);
 
   const filteredProducts = useMemo(() => {
-    return MOCK_PRODUCTS.filter((p) => {
+    // 3. USE 'products' STATE INSTEAD OF MOCK DATA
+    return products.filter((p) => {
       // Search
       const matchesSearch =
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -56,7 +82,7 @@ const Index = () => {
       // Exclude companies
       if (activeFilters.excludeCompanies.length > 0 && activeFilters.excludeCompanies.includes(p.brand)) return false;
 
-      const ingredientNames = p.ingredients.map((i) => i.name);
+      const ingredientNames = p.ingredients.map((i: any) => i.name);
 
       // Include ingredients — product must have ALL selected
       if (activeFilters.includeIngredients.length > 0) {
@@ -72,18 +98,17 @@ const Index = () => {
 
       return true;
     });
-  }, [searchQuery, activeFilters]);
+  }, [searchQuery, activeFilters, products]); // Add 'products' to dependency array
 
   // Reset to page 1 when search or filters change
   useEffect(() => {
     setCurrentPage(1);
-    if (searchQuery) {
+    if (searchQuery && products.length > 0) {
       setIsLoading(true);
       const t = setTimeout(() => setIsLoading(false), 500);
       return () => clearTimeout(t);
     }
-    setIsLoading(false);
-  }, [searchQuery, activeFilters]);
+  }, [searchQuery, activeFilters, products.length]);
 
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const paginatedProducts = filteredProducts.slice(
@@ -261,3 +286,4 @@ const Index = () => {
 };
 
 export default Index;
+
