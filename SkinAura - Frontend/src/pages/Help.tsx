@@ -1,6 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronRight, ShieldCheck, Leaf, Search, Sliders, AlertCircle, UsersRound } from "lucide-react";
+import {
+  ChevronRight, ShieldCheck, Leaf, Search, Sliders,
+  AlertCircle, UsersRound, Wind, Layers
+} from "lucide-react";
 import SkinFooter from "@/components/SkinFooter";
 
 const sections = [
@@ -44,8 +48,124 @@ const sections = [
   },
 ];
 
+const pollutants = [
+  {
+    id: "PM2.5",
+    name: "Fine Particulate Matter",
+    unit: "µg/m³",
+    desc: "Tiny particles smaller than 2.5 micrometres. They penetrate deep into lungs and enter the bloodstream. Most harmful to skin — causes premature aging, inflammation, and acne by penetrating pores.",
+    levels: [
+      { range: "0–30", label: "Good", color: "bg-green-500" },
+      { range: "31–60", label: "Satisfactory", color: "bg-yellow-400" },
+      { range: "61–90", label: "Moderate", color: "bg-orange-400" },
+      { range: "91–120", label: "Poor", color: "bg-red-500" },
+      { range: "121–250", label: "Very Poor", color: "bg-red-800" },
+      { range: "250+", label: "Severe", color: "bg-purple-600" },
+    ],
+    skinEffect: "Accelerates skin aging, causes oxidative stress, clogs pores and worsens acne and eczema.",
+  },
+  {
+    id: "PM10",
+    name: "Coarse Particulate Matter",
+    unit: "µg/m³",
+    desc: "Particles smaller than 10 micrometres including dust, pollen and mould. Less penetrating than PM2.5 but still harmful.",
+    levels: [
+      { range: "0–50", label: "Good", color: "bg-green-500" },
+      { range: "51–100", label: "Satisfactory", color: "bg-yellow-400" },
+      { range: "101–250", label: "Moderate", color: "bg-orange-400" },
+      { range: "251–350", label: "Poor", color: "bg-red-500" },
+      { range: "350+", label: "Severe", color: "bg-purple-600" },
+    ],
+    skinEffect: "Settles on skin surface, causes irritation, allergic reactions and uneven texture.",
+  },
+  {
+    id: "NO2",
+    name: "Nitrogen Dioxide",
+    unit: "µg/m³",
+    desc: "Produced by vehicle engines and power plants. Reacts with skin proteins and lipids, disrupting the skin barrier.",
+    levels: [
+      { range: "0–40", label: "Good", color: "bg-green-500" },
+      { range: "41–80", label: "Satisfactory", color: "bg-yellow-400" },
+      { range: "81–180", label: "Moderate", color: "bg-orange-400" },
+      { range: "181–280", label: "Poor", color: "bg-red-500" },
+      { range: "280+", label: "Severe", color: "bg-purple-600" },
+    ],
+    skinEffect: "Depletes antioxidants in skin, accelerates wrinkle formation and causes hyperpigmentation.",
+  },
+  {
+    id: "SO2",
+    name: "Sulphur Dioxide",
+    unit: "µg/m³",
+    desc: "Emitted by burning fossil fuels and industrial processes. Forms sulphuric acid on contact with moisture.",
+    levels: [
+      { range: "0–40", label: "Good", color: "bg-green-500" },
+      { range: "41–80", label: "Satisfactory", color: "bg-yellow-400" },
+      { range: "81–380", label: "Moderate", color: "bg-orange-400" },
+      { range: "381–800", label: "Poor", color: "bg-red-500" },
+      { range: "800+", label: "Severe", color: "bg-purple-600" },
+    ],
+    skinEffect: "Causes skin dryness, irritation and can trigger rosacea flare-ups.",
+  },
+  {
+    id: "CO",
+    name: "Carbon Monoxide",
+    unit: "µg/m³",
+    desc: "Colourless gas from incomplete combustion. Reduces oxygen delivery to skin cells, impacting their repair and regeneration.",
+    levels: [
+      { range: "0–1000", label: "Good", color: "bg-green-500" },
+      { range: "1001–2000", label: "Satisfactory", color: "bg-yellow-400" },
+      { range: "2001–10000", label: "Moderate", color: "bg-orange-400" },
+      { range: "10001–17000", label: "Poor", color: "bg-red-500" },
+      { range: "17000+", label: "Severe", color: "bg-purple-600" },
+    ],
+    skinEffect: "Reduces oxygen to skin cells, resulting in dullness, slower healing and premature aging.",
+  },
+  {
+    id: "OZONE",
+    name: "Ground-level Ozone",
+    unit: "µg/m³",
+    desc: "Formed when sunlight reacts with vehicle and industrial emissions. Highly reactive and damaging to biological tissue.",
+    levels: [
+      { range: "0–50", label: "Good", color: "bg-green-500" },
+      { range: "51–100", label: "Satisfactory", color: "bg-yellow-400" },
+      { range: "101–168", label: "Moderate", color: "bg-orange-400" },
+      { range: "169–208", label: "Poor", color: "bg-red-500" },
+      { range: "208+", label: "Severe", color: "bg-purple-600" },
+    ],
+    skinEffect: "Depletes Vitamin E and C in skin, weakens barrier function and worsens UV damage.",
+  },
+  {
+    id: "NH3",
+    name: "Ammonia",
+    unit: "µg/m³",
+    desc: "Comes from agricultural activity and industrial processes. Irritates mucous membranes at high concentrations.",
+    levels: [
+      { range: "0–200", label: "Good", color: "bg-green-500" },
+      { range: "201–400", label: "Satisfactory", color: "bg-yellow-400" },
+      { range: "401–800", label: "Moderate", color: "bg-orange-400" },
+      { range: "801–1200", label: "Poor", color: "bg-red-500" },
+      { range: "1200+", label: "Severe", color: "bg-purple-600" },
+    ],
+    skinEffect: "At elevated levels causes skin irritation and dryness, particularly for sensitive skin types.",
+  },
+];
+
+const aqiLevels = [
+  { range: "0–50", label: "Good", color: "bg-green-500", skin: "Low risk. Normal skincare routine is sufficient." },
+  { range: "51–100", label: "Satisfactory", color: "bg-yellow-400", skin: "Mild risk. Consider a light antioxidant serum." },
+  { range: "101–200", label: "Moderate", color: "bg-orange-400", skin: "Moderate risk. Use a protective moisturiser and cleanse thoroughly at night." },
+  { range: "201–300", label: "Poor", color: "bg-red-500", skin: "High risk. Use sunscreen + antioxidant serum, double cleanse in the evening." },
+  { range: "301–400", label: "Very Poor", color: "bg-red-800", skin: "Very high risk. Minimise outdoor exposure, wear SPF 50+, use barrier repair creams." },
+  { range: "400+", label: "Severe", color: "bg-purple-600", skin: "Severe risk. Avoid going outdoors, use a full protective skincare routine." },
+];
+
 const Help = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState<"guide" | "aqi">(
+    searchParams.get("tab") === "aqi" ? "aqi" : "guide"
+  );
+  const [expandedPollutant, setExpandedPollutant] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -57,32 +177,158 @@ const Help = () => {
           <ChevronRight className="rotate-180" size={18} /> Back to home
         </button>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-4xl font-bold mb-2">Help Center</h1>
-          <p className="text-muted-foreground mb-12">Everything you need to know about SkinAura.</p>
+          <p className="text-muted-foreground mb-8">Everything you need to know about SkinAura.</p>
 
-          <div className="space-y-4">
-            {sections.map((s, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.08 * i }}
-                className="card-skin p-6 flex gap-5"
-              >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <s.icon size={20} className="text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold mb-1">{s.title}</h3>
-                  <div className="text-sm text-muted-foreground leading-relaxed">{s.desc}</div>
-                </div>
-              </motion.div>
-            ))}
+          {/* Tabs */}
+          <div className="flex gap-2 mb-8 border-b border-border">
+            <button
+              onClick={() => setActiveTab("guide")}
+              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-semibold border-b-2 -mb-px skin-transition ${
+                activeTab === "guide"
+                  ? "border-primary text-foreground"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Layers size={15} /> App Guide
+            </button>
+            <button
+              onClick={() => setActiveTab("aqi")}
+              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-semibold border-b-2 -mb-px skin-transition ${
+                activeTab === "aqi"
+                  ? "border-primary text-foreground"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Wind size={15} /> AQI & Pollutants
+            </button>
           </div>
+
+          {/* App Guide Tab */}
+          {activeTab === "guide" && (
+            <div className="space-y-4">
+              {sections.map((s, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.06 * i }}
+                  className="card-skin p-6 flex gap-5"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <s.icon size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1">{s.title}</h3>
+                    <div className="text-sm text-muted-foreground leading-relaxed">{s.desc}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          {/* AQI Tab */}
+          {activeTab === "aqi" && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+
+              {/* What is AQI */}
+              <div className="card-skin p-6">
+                <h3 className="font-bold text-lg mb-2">What is AQI?</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  The Air Quality Index (AQI) is a standardised number that tells you how clean or polluted the air is.
+                  It is calculated from raw pollutant concentrations (in µg/m³) using breakpoints defined by India's
+                  Central Pollution Control Board (CPCB). A higher AQI means worse air quality and greater health risk.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-3">
+                  The reading shown as <span className="font-semibold text-foreground">PM2.5: 106 µg/m³ (AQI 253)</span> means
+                  the raw concentration is 106 micrograms per cubic metre, which converts to an AQI of 253 — in the Poor range.
+                </p>
+              </div>
+
+              {/* AQI Scale */}
+              <div>
+                <h3 className="font-bold text-lg mb-4">AQI Scale & Skin Impact</h3>
+                <div className="space-y-2">
+                  {aqiLevels.map((l) => (
+                    <div key={l.label} className="card-skin p-4 flex gap-4 items-start">
+                      <div className={`w-3 h-3 rounded-full shrink-0 mt-1 ${l.color}`} />
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="font-bold text-sm">{l.label}</span>
+                          <span className="text-xs text-muted-foreground">{l.range}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground">{l.skin}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pollutants */}
+              <div>
+                <h3 className="font-bold text-lg mb-4">Pollutants Explained</h3>
+                <div className="space-y-3">
+                  {pollutants.map((p, i) => (
+                    <motion.div
+                      key={p.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.05 * i }}
+                      className="card-skin overflow-hidden"
+                    >
+                      <button
+                        onClick={() => setExpandedPollutant(expandedPollutant === p.id ? null : p.id)}
+                        className="w-full p-5 flex items-center justify-between text-left"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="font-bold text-primary text-sm w-14">{p.id}</span>
+                          <span className="font-semibold text-sm">{p.name}</span>
+                        </div>
+                        <ChevronRight
+                          size={16}
+                          className={`text-muted-foreground skin-transition ${expandedPollutant === p.id ? "rotate-90" : ""}`}
+                        />
+                      </button>
+
+                      {expandedPollutant === p.id && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="px-5 pb-5 space-y-4 border-t border-border pt-4"
+                        >
+                          <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+
+                          <div>
+                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Concentration Levels ({p.unit})</p>
+                            <div className="space-y-1.5">
+                              {p.levels.map((l) => (
+                                <div key={l.label} className="flex items-center gap-3 text-xs">
+                                  <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${l.color}`} />
+                                  <span className="w-24 text-muted-foreground">{l.range}</span>
+                                  <span className="font-medium">{l.label}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="bg-primary/5 rounded-xl p-3">
+                            <p className="text-xs font-bold uppercase tracking-widest text-primary mb-1">Skin Effect</p>
+                            <p className="text-xs text-muted-foreground leading-relaxed">{p.skinEffect}</p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <p className="text-xs text-muted-foreground text-center">
+                Data sourced from Central Pollution Control Board (CPCB) via data.gov.in.
+                AQI calculated using official CPCB breakpoints.
+              </p>
+            </motion.div>
+          )}
         </motion.div>
       </div>
       <SkinFooter />

@@ -26,29 +26,59 @@ export interface GroupedStation {
     pollutant_min: number;
     pollutant_max: number;
     pollutant_avg: number;
+    aqi: number; // converted AQI from raw concentration
   }[];
-  dominantAvg: number; // highest pollutant_avg across all pollutants
+  dominantAvg: number; // highest AQI across all pollutants for this station
 }
 
-export const getAqiColor = (avg: number): string => {
-  if (avg <= 50) return "hsl(142, 71%, 45%)";   // Green
-  if (avg <= 100) return "hsl(48, 96%, 53%)";    // Yellow
-  if (avg <= 200) return "hsl(25, 95%, 53%)";    // Orange
-  if (avg <= 300) return "hsl(0, 84%, 60%)";     // Red
-  return "hsl(270, 50%, 50%)";                    // Purple
+// CPCB breakpoints: convert raw concentration (µg/m³) to AQI (0-500)
+// Source: Central Pollution Control Board India
+// NOTE: CO breakpoints are in µg/m³ (API unit), not mg/m³
+const AQI_BREAKPOINTS: Record<string, { conc: number[]; aqi: number[] }> = {
+  PM2_5: { conc: [0, 30, 60, 90, 120, 250],          aqi: [0, 50, 100, 200, 300, 400] },
+  PM10:  { conc: [0, 50, 100, 250, 350, 430],         aqi: [0, 50, 100, 200, 300, 400] },
+  NO2:   { conc: [0, 40, 80, 180, 280, 400],          aqi: [0, 50, 100, 200, 300, 400] },
+  SO2:   { conc: [0, 40, 80, 380, 800, 1600],         aqi: [0, 50, 100, 200, 300, 400] },
+  CO:    { conc: [0, 1000, 2000, 10000, 17000, 34000], aqi: [0, 50, 100, 200, 300, 400] },
+  OZONE: { conc: [0, 50, 100, 168, 208, 748],         aqi: [0, 50, 100, 200, 300, 400] },
+  NH3:   { conc: [0, 200, 400, 800, 1200, 1800],      aqi: [0, 50, 100, 200, 300, 400] },
 };
 
-export const getAqiLevel = (avg: number): string => {
-  if (avg <= 50) return "Good";
-  if (avg <= 100) return "Moderate";
-  if (avg <= 200) return "Unhealthy";
-  if (avg <= 300) return "Very Unhealthy";
-  return "Hazardous";
+export const concToAqi = (pollutant_id: string, conc: number): number => {
+  if (!conc || isNaN(conc) || conc <= 0) return 0;
+  const key = pollutant_id.replace(".", "_").toUpperCase();
+  const bp = AQI_BREAKPOINTS[key];
+  if (!bp) return 0;
+  const { conc: cl, aqi: al } = bp;
+  for (let i = 1; i < cl.length; i++) {
+    if (conc <= cl[i]) {
+      return Math.round(((al[i] - al[i-1]) / (cl[i] - cl[i-1])) * (conc - cl[i-1]) + al[i-1]);
+    }
+  }
+  return 500;
 };
 
-export const getSkinSeverity = (avg: number): "low" | "moderate" | "high" => {
-  if (avg <= 100) return "low";
-  if (avg <= 200) return "moderate";
+export const getAqiColor = (aqi: number): string => {
+  if (aqi <= 50)  return "hsl(142, 71%, 40%)";  // Green  — Good
+  if (aqi <= 100) return "hsl(48,  96%, 48%)";  // Yellow — Satisfactory
+  if (aqi <= 200) return "hsl(25,  95%, 50%)";  // Orange — Moderate
+  if (aqi <= 300) return "hsl(0,   84%, 55%)";  // Red    — Poor
+  if (aqi <= 400) return "hsl(0,   70%, 35%)";  // Dark red — Very Poor
+  return "hsl(270, 50%, 45%)";                   // Purple — Severe
+};
+
+export const getAqiLevel = (aqi: number): string => {
+  if (aqi <= 50)  return "Good";
+  if (aqi <= 100) return "Satisfactory";
+  if (aqi <= 200) return "Moderate";
+  if (aqi <= 300) return "Poor";
+  if (aqi <= 400) return "Very Poor";
+  return "Severe";
+};
+
+export const getSkinSeverity = (aqi: number): "low" | "moderate" | "high" => {
+  if (aqi <= 100) return "low";
+  if (aqi <= 200) return "moderate";
   return "high";
 };
 
@@ -70,16 +100,19 @@ export const groupByStation = (records: AqiRecord[]): GroupedStation[] => {
       });
     }
     const group = map.get(key)!;
+    // Convert raw concentration to AQI
+    const aqi = concToAqi(r.pollutant_id, r.pollutant_avg);
     group.pollutants.push({
       pollutant_id: r.pollutant_id,
       pollutant_min: r.pollutant_min,
       pollutant_max: r.pollutant_max,
       pollutant_avg: r.pollutant_avg,
+      aqi,
     });
-    if (r.pollutant_avg > group.dominantAvg) {
-      group.dominantAvg = r.pollutant_avg;
+    // dominantAvg is now the highest AQI across all pollutants for this station
+    if (aqi > group.dominantAvg) {
+      group.dominantAvg = aqi;
     }
-    // Keep latest update time
     if (r.last_update > group.last_update) {
       group.last_update = r.last_update;
     }
