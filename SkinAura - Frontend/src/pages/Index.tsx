@@ -1,20 +1,37 @@
 import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import FilterPanel, { type ActiveFilters } from "@/components/FilterPanel";
 import ProductCard from "@/components/ProductCard";
 import SkeletonCard from "@/components/SkeletonCard";
+import SkinFooter from "@/components/SkinFooter";
 
 const ITEMS_PER_PAGE = 10;
 
+const DEFAULT_FILTERS: ActiveFilters = {
+  includeIngredients: [],
+  excludeIngredients: [],
+  includeCompanies: [],
+  excludeCompanies: [],
+  minSafety: null,
+  minEco: null,
+};
+
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [products, setProducts] = useState<any[]>([]);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  // Default to loading true so skeletons show while fetching
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [activeFilters, setActiveFilters] = useState<ActiveFilters>(DEFAULT_FILTERS);
+ 
+  // 1. ADD STATE FOR PRODUCTS
+  const [products, setProducts] = useState<any[]>([]);
   const navigate = useNavigate();
 
-  // ✅ FETCH FROM RENDER BACKEND
+  // 2. FETCH DATA FROM YOUR RENDER BACKEND ON MOUNT
   useEffect(() => {
     setIsLoading(true);
     const backendUrl = import.meta.env.VITE_API_URL ?? "https://skin-aura.onrender.com";
@@ -35,21 +52,76 @@ const Index = () => {
       });
   }, []);
 
-  // ✅ SEARCH FILTER
-  const filteredProducts = useMemo(() => {
-    return products.filter((p) =>
-      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.brand.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [searchQuery, products]);
+  const activeFilterCount =
+    activeFilters.includeIngredients.length +
+    activeFilters.excludeIngredients.length +
+    activeFilters.includeCompanies.length +
+    activeFilters.excludeCompanies.length +
+    (activeFilters.minSafety ? 1 : 0) +
+    (activeFilters.minEco ? 1 : 0);
 
+  const filteredProducts = useMemo(() => {
+    // 3. USE 'products' STATE INSTEAD OF MOCK DATA
+    return products.filter((p) => {
+      // Search
+      const matchesSearch =
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.brand.toLowerCase().includes(searchQuery.toLowerCase());
+      if (!matchesSearch) return false;
+
+      // Min safety score
+      if (activeFilters.minSafety !== null && p.safety < activeFilters.minSafety) return false;
+
+      // Min eco score
+      if (activeFilters.minEco !== null && p.eco < activeFilters.minEco) return false;
+
+      // Include companies
+      if (activeFilters.includeCompanies.length > 0 && !activeFilters.includeCompanies.includes(p.brand)) return false;
+
+      // Exclude companies
+      if (activeFilters.excludeCompanies.length > 0 && activeFilters.excludeCompanies.includes(p.brand)) return false;
+
+      const ingredientNames = p.ingredients.map((i: any) => i.name);
+
+      // Include ingredients — product must have ALL selected
+      if (activeFilters.includeIngredients.length > 0) {
+        const hasAll = activeFilters.includeIngredients.every((ing) => ingredientNames.includes(ing));
+        if (!hasAll) return false;
+      }
+
+      // Exclude ingredients — product must have NONE of selected
+      if (activeFilters.excludeIngredients.length > 0) {
+        const hasAny = activeFilters.excludeIngredients.some((ing) => ingredientNames.includes(ing));
+        if (hasAny) return false;
+      }
+
+      return true;
+    });
+  }, [searchQuery, activeFilters, products]); // Add 'products' to dependency array
+
+  // Reset to page 1 when search or filters change
+  useEffect(() => {
+    setCurrentPage(1);
+    if (searchQuery && products.length > 0) {
+      setIsLoading(true);
+      const t = setTimeout(() => setIsLoading(false), 500);
+      return () => clearTimeout(t);
+    }
+  }, [searchQuery, activeFilters, products.length]);
+
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <div className="p-4">
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
       <Navbar
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
