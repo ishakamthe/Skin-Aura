@@ -6,7 +6,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.5,
       "eco": 7.0,
-      "image": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/him/him50047/y/29.jpg",
+      "image": "https://m.media-amazon.com/images/I/518N3l4z1-L._SX522_.jpg",
       "category": "Face Wash",
       "description": "Deep-cleanses pores with neem and turmeric to combat acne and excess oil."
     },
@@ -16,7 +16,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 8.5,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/himalaya/face_wash_0002.jpg",
+      "image": "https://m.media-amazon.com/images/I/71RjwtQtYSL._SX522_.jpg",
       "category": "Face Wash",
       "description": "Gentle aloe vera wash that cleanses while maintaining the skin's natural moisture."
     },
@@ -26,7 +26,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 6.8,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/himalaya/cleanser_0003.jpg",
+      "image": "https://himalayawellness.in/cdn/shop/products/BLACKHEAD-CLEARING-WALNUT-FS-50G.jpg?v=1663758238&width=1080",
       "category": "Cleanser",
       "description": "Natural walnut shell powder scrub that buffs away dead skin for a radiant glow."
     },
@@ -36,7 +36,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.2,
       "eco": 7.0,
-      "image": "https://cdn.skinaura.in/products/himalaya/face_wash_0004.jpg",
+      "image": "https://himalayawellness.in/cdn/shop/files/7555380-2_Himalaya-Oil-Clear-Lemon-Face-Wash_100ml_FOP_1800x1800.jpg?v=1737627687",
       "category": "Face Wash",
       "description": "Lemon and honey formula that controls excess sebum and refreshes skin."
     },
@@ -46,7 +46,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 8.0,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/himalaya/moisturizer_0005.jpg",
+      "image": "https://himalayawellness.in/cdn/shop/products/revitalizing-night-cream_1800x1800.jpg?v=1622097701",
       "category": "Moisturizer",
       "description": "Nourishes skin overnight with ashwagandha and almond oil for a youthful look."
     },
@@ -56,7 +56,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/himalaya/moisturizer_0006.jpg",
+      "image": "https://himalayawellness.in/cdn/shop/products/NaturalGlowKesar50g-Tube_Front_1800x1800.jpg?v=1678092926",
       "category": "Moisturizer",
       "description": "Saffron-infused cream that brightens complexion and evens skin tone daily."
     },
@@ -66,7 +66,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 8.2,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/himalaya/moisturizer_0007.jpg",
+      "image": "https://m.media-amazon.com/images/I/61N2NtfMc9L._SX522_.jpg",
       "category": "Moisturizer",
       "description": "Classic everyday moisturiser with almond oil and winter cherry for soft skin."
     },
@@ -76,7 +76,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 8.0,
       "eco": 7.6,
-      "image": "https://cdn.skinaura.in/products/himalaya/serum_0008.jpg",
+      "image": "https://himalayawellness.in/cdn/shop/products/under-eye-cream_1800x1800.jpg?v=1622098730",
       "category": "Serum",
       "description": "Reduces puffiness and dark circles with cucumber and aloe vera extracts."
     },
@@ -86,7 +86,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.5,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/himalaya/serum_0009.jpg",
+      "image": "https://m.media-amazon.com/images/I/61oqGjcGGQL._SX522_.jpg",
       "category": "Serum",
       "description": "Vitamin C-rich serum that fades dark spots and brightens dull skin tone."
     },
@@ -96,7 +96,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.8,
       "eco": 7.0,
-      "image": "https://cdn.skinaura.in/products/himalaya/sunscreen_0010.jpg",
+      "image": "https://m.media-amazon.com/images/I/614yLOLZEEL._SX522_.jpg",
       "category": "Sunscreen",
       "description": "Lightweight SPF 30 lotion with aloe vera that shields and hydrates skin."
     },
@@ -106,7 +106,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.5,
       "eco": 8.3,
-      "image": "https://cdn.skinaura.in/products/mamaearth/face_wash_0011.jpg",
+      "image": "https://images.mamaearth.in/catalog/product/u/b/ubtan_fw_150ml.jpg?format=auto&height=600",
       "category": "Face Wash",
       "description": "Traditional ubtan formula with turmeric and saffron for a bright, clean complexion."
     },
@@ -116,7 +116,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/mamaearth/face_wash_0012.jpg",
+      "image": "https://m.media-amazon.com/images/I/31CrIn6cT2L._SY300_SX300_QL70_FMwebp_.jpg",
       "category": "Face Wash",
       "description": "Brightening face wash with Vitamin C and turmeric to reduce tan and dullness."
     },
@@ -126,7 +126,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/mamaearth/face_wash_0013.jpg",
+      "image": "https://images.mamaearth.in/catalog/product/1/_/1_25.jpg?format=auto&height=600",
       "category": "Face Wash",
       "description": "Activated charcoal detox wash that pulls out impurities and unclogs pores."
     },
@@ -136,7 +136,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.2,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/mamaearth/face_wash_0014.jpg",
+      "image": "https://m.media-amazon.com/images/I/31oSZylcZsL._SY300_SX300_QL70_FMwebp_.jpg",
       "category": "Face Wash",
       "description": "Tea tree and neem formula that targets acne-causing bacteria effectively."
     },
@@ -146,7 +146,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 9.0,
       "eco": 8.7,
-      "image": "https://cdn.skinaura.in/products/mamaearth/serum_0015.jpg",
+      "image": "https://m.media-amazon.com/images/I/41SsFMdEHZL._SX522_.jpg",
       "category": "Serum",
       "description": "10% niacinamide + zinc serum that minimises pores and controls oil production."
     },
@@ -156,7 +156,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/mamaearth/serum_0016.jpg",
+      "image": "https://m.media-amazon.com/images/I/51zZo49wleL._SX522_.jpg",
       "category": "Serum",
       "description": "Potent Vitamin C + turmeric serum for visible brightening and glow restoration."
     },
@@ -166,7 +166,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 9.2,
       "eco": 9.0,
-      "image": "https://cdn.skinaura.in/products/mamaearth/serum_0017.jpg",
+      "image": "https://images.mamaearth.in/catalog/product/s/k/skin_plum_serum_1_1.jpg?format=auto&height=600",
       "category": "Serum",
       "description": "Multi-molecular HA serum that plumps and intensely hydrates every skin layer."
     },
@@ -176,7 +176,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 7.5,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/mamaearth/serum_0018.jpg",
+      "image": "https://images.mamaearth.in/catalog/product/r/e/retinol-night-cream-1_1_bf3clpgk1y3nzzr9.jpg?format=auto&height=600",
       "category": "Serum",
       "description": "0.3% retinol + bakuchiol serum for anti-ageing and cell-renewal benefits."
     },
@@ -186,7 +186,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.5,
       "eco": 8.3,
-      "image": "https://cdn.skinaura.in/products/mamaearth/moisturizer_0019.jpg",
+      "image": "https://m.media-amazon.com/images/I/31yxUMuvTJS._SY300_SX300_QL70_FMwebp_.jpg",
       "category": "Moisturizer",
       "description": "Water-gel moisturiser with hyaluronic acid that provides 24-hour hydration."
     },
@@ -196,7 +196,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.0,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/mamaearth/sunscreen_0020.jpg",
+      "image": "https://m.media-amazon.com/images/I/61Qbv8dVqXL._AC_UF1000,1000_QL80_.jpg",
       "category": "Sunscreen",
       "description": "Lightweight sunscreen moisturiser with Vitamin C for tan-free protection."
     },
@@ -206,7 +206,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.3,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/mamaearth/sunscreen_0021.jpg",
+      "image": "https://m.media-amazon.com/images/I/61VSWOfpkKL.jpg",
       "category": "Sunscreen",
       "description": "SPF 50 PA+++ sunscreen with turmeric that blocks UV and reduces tan."
     },
@@ -216,7 +216,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.0,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/mamaearth/face_wash_0022.jpg",
+      "image": "https://m.media-amazon.com/images/I/51xBD3NTX4L._AC_UF1000,1000_QL80_.jpg",
       "category": "Face Wash",
       "description": "Coconut-based gentle cleanser that removes makeup and impurities softly."
     },
@@ -226,7 +226,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.5,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/mamaearth/moisturizer_0023.jpg",
+      "image": "https://images.mamaearth.in/catalog/product/s/k/skin-illuminate-face-cream.jpg?format=auto&height=600",
       "category": "Moisturizer",
       "description": "Daily brightening cream with Vitamin C and turmeric for radiant glow."
     },
@@ -236,7 +236,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 9.2,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0024.jpg",
+      "image": "https://m.media-amazon.com/images/I/51fo5Cdx4YL._AC_UF1000,1000_QL80_.jpg",
       "category": "Serum",
       "description": "High-strength niacinamide serum that visibly reduces pores and oil within weeks."
     },
@@ -246,7 +246,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0025.jpg",
+      "image": "https://m.media-amazon.com/images/I/717Kb7GUFyL.jpg",
       "category": "Serum",
       "description": "Stable Ethyl Ascorbic Acid serum for dark spots, dullness, and radiance."
     },
@@ -256,7 +256,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 9.5,
       "eco": 9.2,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0026.jpg",
+      "image": "https://m.media-amazon.com/images/I/51gRO13Q0+L.jpg",
       "category": "Serum",
       "description": "Multi-weight HA + PGA serum delivering intense surface-to-deep hydration."
     },
@@ -266,7 +266,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0027.jpg",
+      "image": "https://rukminim2.flixcart.com/image/480/640/xif0q/anti-ageing/w/q/a/10-retinol-serum-0-3-for-anti-aging-with-q10-to-reduce-fine-original-imagy9czgkzhshcc.jpeg?q=90",
       "category": "Serum",
       "description": "Beginner-friendly retinol serum that reduces fine lines without heavy irritation."
     },
@@ -276,7 +276,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 7.5,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0028.jpg",
+      "image": "https://sfycdn.speedsize.com/56385b25-4e17-4a9a-9bec-c421c18686fb/https://beminimalist.co/cdn/shop/products/SalicylicAcid2_1200-1-min.png?v=1646458899&width=480",
       "category": "Serum",
       "description": "BHA serum that exfoliates clogged pores and clears acne effectively."
     },
@@ -286,7 +286,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 6.5,
       "eco": 6.0,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0029.jpg",
+      "image": "https://m.media-amazon.com/images/I/51R+VNyrsjL.jpg",
       "category": "Serum",
       "description": "Potent dual-exfoliant serum for resurfacing and smoothing skin texture."
     },
@@ -296,7 +296,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.5,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/minimalist/sunscreen_0030.jpg",
+      "image": "https://m.media-amazon.com/images/I/513-tzi7ZRL.jpg",
       "category": "Sunscreen",
       "description": "High-protection sunscreen with no white cast; suitable for all skin tones."
     },
@@ -306,7 +306,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/minimalist/moisturizer_0031.jpg",
+      "image": "https://m.media-amazon.com/images/I/51czpTrWOVL._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Peptide-rich moisturiser that strengthens skin barrier and firms over time."
     },
@@ -316,7 +316,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.5,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/minimalist/cleanser_0032.jpg",
+      "image": "https://m.media-amazon.com/images/I/51BKfSslU1L._AC_UF1000,1000_QL80_.jpg",
       "category": "Cleanser",
       "description": "Oil-based cleanser that melts away sunscreen and makeup without stripping skin."
     },
@@ -326,7 +326,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 9.0,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/minimalist/moisturizer_0033.jpg",
+      "image": "https://m.media-amazon.com/images/I/51czpTrWOVL._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Ceramide and cholesterol formula that rebuilds and seals the skin barrier."
     },
@@ -336,7 +336,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.5,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0034.jpg",
+      "image": "https://sfycdn.speedsize.com/56385b25-4e17-4a9a-9bec-c421c18686fb/https://beminimalist.co/cdn/shop/files/AlphaArNew.png?v=1721397838&width=480",
       "category": "Serum",
       "description": "Brightening serum that targets hyperpigmentation and post-acne marks."
     },
@@ -346,7 +346,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 7.0,
       "eco": 6.8,
-      "image": "https://cdn.skinaura.in/products/minimalist/cleanser_0035.jpg",
+      "image": "https://m.media-amazon.com/images/I/51sEEZ7M1sL._AC_UF1000,1000_QL80_.jpg",
       "category": "Cleanser",
       "description": "Exfoliating toner that smooths texture, unclogs pores, and brightens skin."
     },
@@ -356,7 +356,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.0,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/minimalist/sunscreen_0036.jpg",
+      "image": "https://m.media-amazon.com/images/I/51cCwXqjofL.jpg",
       "category": "Sunscreen",
       "description": "Daily SPF 30 sunscreen with zinc oxide for lightweight, matte protection."
     },
@@ -366,7 +366,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 9.0,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/serum_0037.jpg",
+      "image": "https://m.media-amazon.com/images/I/61iF8AcLs5L.jpg",
       "category": "Serum",
       "description": "Ceramide + niacinamide formula that repairs damaged barrier and calms redness."
     },
@@ -376,7 +376,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 9.2,
       "eco": 9.0,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/serum_0038.jpg",
+      "image": "https://m.media-amazon.com/images/I/51EpZT48XJL.jpg",
       "category": "Serum",
       "description": "Centella asiatica serum for reactive and sensitive skin prone to redness."
     },
@@ -386,7 +386,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/serum_0039.jpg",
+      "image": "https://www.dotandkey.com/cdn/shop/files/1-1_b4ae866f-e0a8-43d1-971f-1d143d76f01c.jpg?v=1761888942&width=700",
       "category": "Serum",
       "description": "Dual antioxidant serum for a brighter complexion and improved elasticity."
     },
@@ -396,7 +396,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 9.0,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/moisturizer_0040.jpg",
+      "image": "https://m.media-amazon.com/images/I/61MIEclOBfL.jpg",
       "category": "Moisturizer",
       "description": "Watermelon-infused gel cream that hydrates and soothes overheated skin."
     },
@@ -406,7 +406,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/moisturizer_0041.jpg",
+      "image": "https://m.media-amazon.com/images/I/612gxDPcCGL.jpg",
       "category": "Moisturizer",
       "description": "Ceramide-rich cream that strengthens skin barrier and reduces sensitivity."
     },
@@ -416,7 +416,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 8.5,
       "eco": 8.3,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/face_wash_0042.jpg",
+      "image": "https://m.media-amazon.com/images/I/51uCJE5L2hL.jpg",
       "category": "Face Wash",
       "description": "Centella asiatica cleanser that soothes and cleanses without disrupting skin pH."
     },
@@ -426,7 +426,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/cleanser_0043.jpg",
+      "image": "https://m.media-amazon.com/images/I/71AHW7nqFmL._AC_UF350,350_QL80_.jpg",
       "category": "Cleanser",
       "description": "Detoxifying scrub with volcanic ash that removes pollution and stubborn tan."
     },
@@ -436,7 +436,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 8.5,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/sunscreen_0044.jpg",
+      "image": "https://www.dotandkey.com/cdn/shop/files/50new.jpg?v=1771083635&width=700",
       "category": "Sunscreen",
       "description": "Ultra-light SPF 50 PA+++ that layers beautifully under makeup with no cast."
     },
@@ -446,7 +446,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 8.3,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/sunscreen_0045.jpg",
+      "image": "https://m.media-amazon.com/images/I/61ckTgN44WL.jpg",
       "category": "Sunscreen",
       "description": "Zinc oxide sunscreen formulated to be invisible on deep skin tones."
     },
@@ -456,7 +456,7 @@ PRODUCTS_DATA = {
       "brand": "Lakme",
       "safety": 7.0,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/lakme/moisturizer_0046.jpg",
+      "image": "https://m.media-amazon.com/images/I/61h-eDKU66L._AC_UF350,350_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Lightweight day cream with SPF that keeps skin fresh through the workday."
     },
@@ -466,7 +466,7 @@ PRODUCTS_DATA = {
       "brand": "Lakme",
       "safety": 7.5,
       "eco": 6.8,
-      "image": "https://cdn.skinaura.in/products/lakme/serum_0047.jpg",
+      "image": "https://www.lakmeindia.com/cdn/shop/files/23414_S1-8901030954702_800x.jpg?v=1702536454",
       "category": "Serum",
       "description": "Micro-crystals serum that brightens and reduces the appearance of dark spots."
     },
@@ -476,7 +476,7 @@ PRODUCTS_DATA = {
       "brand": "Lakme",
       "safety": 6.8,
       "eco": 6.2,
-      "image": "https://cdn.skinaura.in/products/lakme/sunscreen_0048.jpg",
+      "image": "https://m.media-amazon.com/images/I/41GiZiNAf7L._AC_UF1000,1000_QL80_.jpg",
       "category": "Sunscreen",
       "description": "Tinted SPF 50 sunscreen that evens complexion while protecting from UV rays."
     },
@@ -486,7 +486,7 @@ PRODUCTS_DATA = {
       "brand": "Lakme",
       "safety": 6.5,
       "eco": 6.0,
-      "image": "https://cdn.skinaura.in/products/lakme/face_wash_0049.jpg",
+      "image": "https://www.lakmeindia.com/cdn/shop/files/19701_S1-8901030994760_58e726e3-a82a-4f19-965a-4ef19830cb3a_1000x.jpg?v=1738654923",
       "category": "Face Wash",
       "description": "Fruity gel cleanser with strawberry extract that refreshes and brightens skin."
     },
@@ -496,7 +496,7 @@ PRODUCTS_DATA = {
       "brand": "Lakme",
       "safety": 6.8,
       "eco": 6.0,
-      "image": "https://cdn.skinaura.in/products/lakme/moisturizer_0050.jpg",
+      "image": "https://www.lakmeindia.com/cdn/shop/files/22362_S1-8901030974045_1000x.jpg?v=1702537394",
       "category": "Moisturizer",
       "description": "SPF 25 brightening day cream that protects and provides light coverage."
     },
@@ -506,7 +506,7 @@ PRODUCTS_DATA = {
       "brand": "Lakme",
       "safety": 7.2,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/lakme/serum_0051.jpg",
+      "image": "https://m.media-amazon.com/images/I/31e6dpb-kNL._SY300_SX300_QL70_FMwebp_.jpg",
       "category": "Serum",
       "description": "Anti-ageing serum with collagen activators that firms and lifts over time."
     },
@@ -516,7 +516,7 @@ PRODUCTS_DATA = {
       "brand": "Lakme",
       "safety": 7.0,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/lakme/moisturizer_0052.jpg",
+      "image": "https://www.bbassets.com/media/uploads/p/l/40128412_2-lakme-creme-9-to-5-naturale-night.jpg",
       "category": "Moisturizer",
       "description": "Rich night cream with natural botanicals that repairs skin while you sleep."
     },
@@ -526,7 +526,7 @@ PRODUCTS_DATA = {
       "brand": "Biotique",
       "safety": 8.0,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/biotique/face_wash_0053.jpg",
+      "image": "https://m.media-amazon.com/images/I/61pRkRs9OQL.jpg",
       "category": "Face Wash",
       "description": "Honey and aloe gel wash that hydrates as it cleanses for balanced skin."
     },
@@ -536,7 +536,7 @@ PRODUCTS_DATA = {
       "brand": "Biotique",
       "safety": 7.5,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/biotique/moisturizer_0054.jpg",
+      "image": "https://www.biotique.com/cdn/shop/products/8904352005312_1-min.jpg?v=1698919672",
       "category": "Moisturizer",
       "description": "Coconut and manjistha cream that brightens uneven skin tone naturally."
     },
@@ -546,7 +546,7 @@ PRODUCTS_DATA = {
       "brand": "Biotique",
       "safety": 8.0,
       "eco": 8.3,
-      "image": "https://cdn.skinaura.in/products/biotique/moisturizer_0055.jpg",
+      "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTzQwWNzDbqN4q8QghkFCNTXvlVTaZY3eB2E9yaSxNpEdRDphakV_eKuniaZzw3hPZMujhJ3epHLylh0v6I722Eb6P3YylBhtxoR-qT3KuowIehJD04V890exzogyc40HLTMyiweFIMRQ&usqp=CAc",
       "category": "Moisturizer",
       "description": "Wheat germ and honey formula that firms and deeply nourishes skin daily."
     },
@@ -556,7 +556,7 @@ PRODUCTS_DATA = {
       "brand": "Biotique",
       "safety": 7.8,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/biotique/sunscreen_0056.jpg",
+      "image": "https://www.biotique.com/cdn/shop/products/8904352003837_1-min.jpg?v=1670240040",
       "category": "Sunscreen",
       "description": "Flaxseed SPF 30 moisturiser enriched with honey for protected glowing skin."
     },
@@ -566,7 +566,7 @@ PRODUCTS_DATA = {
       "brand": "Biotique",
       "safety": 8.0,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/biotique/cleanser_0057.jpg",
+      "image": "https://www.biotique.com/cdn/shop/files/Papaya-Tube_face-scrub_100g-min_600x.jpg?v=1673248917",
       "category": "Cleanser",
       "description": "Papaya enzyme scrub that gently removes tan and polishes skin surface."
     },
@@ -576,7 +576,7 @@ PRODUCTS_DATA = {
       "brand": "Biotique",
       "safety": 7.8,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/biotique/serum_0058.jpg",
+      "image": "https://images-static.nykaa.com/media/catalog/product/4/5/45181e58906009451251_2.jpg?tr=w-500",
       "category": "Serum",
       "description": "Anti-ageing serum with dandelion and winter cherry that reduces wrinkles."
     },
@@ -586,7 +586,7 @@ PRODUCTS_DATA = {
       "brand": "Biotique",
       "safety": 8.0,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/biotique/sunscreen_0059.jpg",
+      "image": "https://www.biotique.com/cdn/shop/products/Aloevera_30spf_100ml_sunscreen_TUBES.jpg?v=1670857606",
       "category": "Sunscreen",
       "description": "Aloe-rich SPF 30+ sunscreen that soothes while shielding from UV damage."
     },
@@ -596,7 +596,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/plum/face_wash_0060.jpg",
+      "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT2FkiRGa6YrqbJxiCwCClKJs-tRhD4-Y-QfobnT4QHbh_f-x2HBk5V2FVp3lrvMN-lPpjv4EeHaMxYyGM4iAP2PG_UhcnPoDC3L6rTOsgyXB_KNUf0_tqtY5Y7iE1GOYdX&usqp=CAc",
       "category": "Face Wash",
       "description": "Green tea antioxidant face wash that cleanses deeply and minimises pores."
     },
@@ -606,7 +606,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.5,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/plum/serum_0061.jpg",
+      "image": "https://m.media-amazon.com/images/I/51aFiND61mL.jpg",
       "category": "Serum",
       "description": "Vitamin C + grape seed serum that renews skin cells for a youthful glow."
     },
@@ -616,7 +616,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/plum/moisturizer_0062.jpg",
+      "image": "https://m.media-amazon.com/images/I/41MNaLo58DL._SX522_.jpg",
       "category": "Moisturizer",
       "description": "Vitamin E moisturiser for sensitive skin that calms, repairs, and hydrates."
     },
@@ -626,7 +626,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 9.0,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/plum/moisturizer_0063.jpg",
+      "image": "https://m.media-amazon.com/images/I/619i7yE2PpS._AC_UF1000,1000_QL80_.jpg ",
       "category": "Moisturizer",
       "description": "Aloe vera light moisturiser that provides all-day freshness without greasiness."
     },
@@ -636,7 +636,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/plum/serum_0064.jpg",
+      "image": "https://m.media-amazon.com/images/I/41PeYP6mKNL.jpg",
       "category": "Serum",
       "description": "Stable Vitamin C serum for brightening, firming, and fading dark marks."
     },
@@ -646,7 +646,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.5,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/plum/sunscreen_0065.jpg",
+      "image": "https://m.media-amazon.com/images/I/514FR0bZVOL._AC_UF1000,1000_QL80_.jpg",
       "category": "Sunscreen",
       "description": "Antioxidant-packed SPF 35 sunscreen that fights UV and free-radical damage."
     },
@@ -656,7 +656,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.5,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/plum/cleanser_0066.jpg",
+      "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQMFZ29p3GhSl0blk_rTioPtuPSph5T5TaPGR4UCk6U4tEKKoMTvWdx-XyKSvIGSYSSanKDJ3HQ7G4WQOP8w5tb8pZTU02meu53PfbbXXjhF_9fN76yY8Qtmqt45callLxwbBWJFA&usqp=CAc",
       "category": "Cleanser",
       "description": "Alcohol-free toner with green tea that tightens pores and balances skin pH."
     },
@@ -666,7 +666,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.3,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/plum/cleanser_0067.jpg",
+      "image": "https://m.media-amazon.com/images/I/41oTVrmZIJL._SX522_.jpg",
       "category": "Cleanser",
       "description": "Green tea and AHA scrub that deep-cleanses pores and smooths skin texture."
     },
@@ -676,7 +676,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.5,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/face_wash_0068.jpg",
+      "image": "https://assets.myntassets.com/assets/images/12426300/2024/3/13/ea813957-34cf-4d4b-b32d-3ac948917d351710325909785-WOW-SKIN-SCIENCE-Aloe-Vera-Foaming-Face-Wash-with-Built-In-F-1.jpg",
       "category": "Face Wash",
       "description": "Sulfate-free aloe foaming wash that hydrates and cleanses without drying."
     },
@@ -686,7 +686,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/serum_0069.jpg",
+      "image": "https://m.media-amazon.com/images/I/41jciwG1+CL._AC_UF1000,1000_QL80_.jpg",
       "category": "Serum",
       "description": "20% Vitamin C + hyaluronic acid serum for glowing, hydrated skin."
     },
@@ -696,7 +696,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 9.2,
       "eco": 9.0,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/serum_0070.jpg",
+      "image": "https://m.media-amazon.com/images/I/71RlPcPsytL.jpg",
       "category": "Serum",
       "description": "Ultra-hydrating serum with 4 forms of HA to plump and moisturise all day."
     },
@@ -706,7 +706,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.0,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/cleanser_0071.jpg",
+      "image": "https://m.media-amazon.com/images/I/81khhT6I4HL._AC_UF1000,1000_QL80_.jpg",
       "category": "Cleanser",
       "description": "Multifunctional toning mist with ACV and niacinamide to balance skin."
     },
@@ -716,7 +716,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.2,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/cleanser_0072.jpg",
+      "image": "https://m.media-amazon.com/images/I/61YfH-WYebL.jpg",
       "category": "Cleanser",
       "description": "Traditional ubtan blend with chickpea and turmeric for tan removal and glow."
     },
@@ -726,7 +726,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.0,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/sunscreen_0073.jpg",
+      "image": "https://m.media-amazon.com/images/I/61JTrfzkbIL.jpg",
       "category": "Sunscreen",
       "description": "Broad-spectrum SPF 50 with no white cast; enriched with aloe and green tea."
     },
@@ -736,7 +736,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/moisturizer_0074.jpg",
+      "image": "https://m.media-amazon.com/images/I/61So2xQFfEL.jpg",
       "category": "Moisturizer",
       "description": "10% niacinamide cream that reduces pores, oiliness, and uneven skin tone."
     },
@@ -746,7 +746,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/moisturizer_0075.jpg",
+      "image": "https://m.media-amazon.com/images/I/61PJo9LXebL._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Retinol + peptide night cream that firms and reduces signs of ageing overnight."
     },
@@ -756,7 +756,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 9.0,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/cetaphil/cleanser_0076.jpg",
+      "image": "https://m.media-amazon.com/images/I/71t9JRry+3L._AC_UF1000,1000_QL80_.jpg",
       "category": "Cleanser",
       "description": "Dermatologist-recommended fragrance-free cleanser for sensitive skin types."
     },
@@ -766,7 +766,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 8.8,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/cetaphil/moisturizer_0077.jpg",
+      "image": "https://www.clickoncare.com/cdn/shop/files/Cetaphil-Moisturising-Cream80gm01.jpg?v=1685184754",
       "category": "Moisturizer",
       "description": "Rich, long-lasting moisturiser that relieves dry skin without clogging pores."
     },
@@ -776,7 +776,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 8.8,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/cetaphil/moisturizer_0078.jpg",
+      "image": "https://m.media-amazon.com/images/I/61b7YnBN17L._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Lightweight non-greasy lotion that maintains skin moisture through the day."
     },
@@ -786,7 +786,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 8.5,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/cetaphil/sunscreen_0079.jpg",
+      "image": "https://m.media-amazon.com/images/I/51OmLDvwPtL.jpg",
       "category": "Sunscreen",
       "description": "SPF 50 moisturiser that protects sensitive skin and maintains hydration."
     },
@@ -796,7 +796,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 8.2,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/cetaphil/face_wash_0080.jpg",
+      "image": "https://m.media-amazon.com/images/I/510VMKAOD8L.jpg",
       "category": "Face Wash",
       "description": "Foam cleanser that removes excess oil without stripping skin of its barrier."
     },
@@ -806,7 +806,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 8.5,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/cetaphil/serum_0081.jpg",
+      "image": "https://m.media-amazon.com/images/I/61YFF0XjKKL._AC_UF1000,1000_QL80_.jpg",
       "category": "Serum",
       "description": "Niacinamide and vitamin C serum that brightens uneven skin tone gently."
     },
@@ -816,7 +816,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 8.5,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/cetaphil/face_wash_0082.jpg",
+      "image": "https://m.media-amazon.com/images/I/41sHJ4NjhJL.jpg",
       "category": "Face Wash",
       "description": "Soap-free foaming cleanser for normal to oily sensitive skin types."
     },
@@ -826,7 +826,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 7.5,
       "eco": 7.0,
-      "image": "https://cdn.skinaura.in/products/neutrogena/face_wash_0083.jpg",
+      "image": "https://m.media-amazon.com/images/I/41cB3gU9HvL._AC_UF1000,1000_QL80_.jpg",
       "category": "Face Wash",
       "description": "Beta-hydroxy formula that penetrates pores and removes dead skin cells."
     },
@@ -836,7 +836,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 8.8,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/neutrogena/moisturizer_0084.jpg",
+      "image": "https://m.media-amazon.com/images/I/51YTdG8RPSL._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Hyaluronic acid gel cream that delivers continuous hydration throughout the day."
     },
@@ -846,7 +846,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 7.5,
       "eco": 6.8,
-      "image": "https://cdn.skinaura.in/products/neutrogena/serum_0085.jpg",
+      "image": "https://m.media-amazon.com/images/I/61WdLcj-MVL.jpg",
       "category": "Serum",
       "description": "Retinol + glucose complex serum that visibly reduces wrinkles in one week."
     },
@@ -856,7 +856,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 7.0,
       "eco": 6.2,
-      "image": "https://cdn.skinaura.in/products/neutrogena/sunscreen_0086.jpg",
+      "image": "https://m.media-amazon.com/images/I/41XT6-ALAjL.jpg",
       "category": "Sunscreen",
       "description": "Lightweight dry-touch sunscreen that layers invisibly under makeup."
     },
@@ -866,7 +866,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 8.0,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/neutrogena/moisturizer_0087.jpg",
+      "image": "https://m.media-amazon.com/images/I/41JSAHqgL-L.jpg",
       "category": "Moisturizer",
       "description": "Glycerin-rich hand and body cream clinically proven to heal very dry skin."
     },
@@ -876,7 +876,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 7.0,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/neutrogena/face_wash_0088.jpg",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT29mnFA9l0qeR3Wd3bXv0JMrzP002QbuD-6g&s",
       "category": "Face Wash",
       "description": "Salicylic acid wash that fights acne breakouts and prevents future blemishes."
     },
@@ -886,7 +886,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 7.2,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/neutrogena/serum_0089.jpg",
+      "image": "https://m.media-amazon.com/images/S/aplus-media/vc/d4898ae0-ce80-4550-9f39-76571a5abc97.__CR0,0,300,400_PT0_SX300_V1___.png",
       "category": "Serum",
       "description": "Vitamin C brightening serum for fairer, more even-looking skin over time."
     },
@@ -896,7 +896,7 @@ PRODUCTS_DATA = {
       "brand": "Ponds",
       "safety": 7.0,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/ponds/cleanser_0090.jpg",
+      "image": "https://m.media-amazon.com/images/I/612wrfyaROL.jpg",
       "category": "Cleanser",
       "description": "Classic cold cream that removes makeup and impurities while softening skin."
     },
@@ -906,7 +906,7 @@ PRODUCTS_DATA = {
       "brand": "Ponds",
       "safety": 6.8,
       "eco": 6.2,
-      "image": "https://cdn.skinaura.in/products/ponds/moisturizer_0091.jpg",
+      "image": "https://m.media-amazon.com/images/I/61mAe6K68DL._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Anti-ageing day cream with SPF 15 that reduces wrinkles and brightens skin."
     },
@@ -916,7 +916,7 @@ PRODUCTS_DATA = {
       "brand": "Ponds",
       "safety": 7.0,
       "eco": 6.2,
-      "image": "https://cdn.skinaura.in/products/ponds/serum_0092.jpg",
+      "image": "https://www.bbassets.com/media/uploads/p/l/40127433_2-ponds-age-miracle-wrinkle-corrector-day-cream-spf-18-pa.jpg",
       "category": "Serum",
       "description": "Retinol-C serum that corrects wrinkles and firms skin for a younger look."
     },
@@ -926,7 +926,7 @@ PRODUCTS_DATA = {
       "brand": "Ponds",
       "safety": 5.5,
       "eco": 5.0,
-      "image": "https://cdn.skinaura.in/products/ponds/moisturizer_0093.jpg",
+      "image": "https://m.media-amazon.com/images/I/61lMXq9IsAL.jpg",
       "category": "Moisturizer",
       "description": "SPF 15 lightening cream that targets dark spots and brightens complexion."
     },
@@ -936,7 +936,7 @@ PRODUCTS_DATA = {
       "brand": "Ponds",
       "safety": 6.0,
       "eco": 5.5,
-      "image": "https://cdn.skinaura.in/products/ponds/face_wash_0094.jpg",
+      "image": "https://m.media-amazon.com/images/I/41i4saYxqqL.jpg",
       "category": "Face Wash",
       "description": "Activated carbon foam wash that pulls out deep-set impurities and excess oil."
     },
@@ -946,7 +946,7 @@ PRODUCTS_DATA = {
       "brand": "Ponds",
       "safety": 6.8,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/ponds/face_wash_0095.jpg",
+      "image": "https://m.media-amazon.com/images/I/81rnJ0Ss+hL._AC_UF1000,1000_QL80_.jpg",
       "category": "Face Wash",
       "description": "Milk protein and honey wash that cleanses and conditions skin simultaneously."
     },
@@ -956,7 +956,7 @@ PRODUCTS_DATA = {
       "brand": "Ponds",
       "safety": 6.5,
       "eco": 6.0,
-      "image": "https://cdn.skinaura.in/products/ponds/serum_0096.jpg",
+      "image": "https://ponds.in/cdn/shop/files/27484_S1-8901030997143_900x.jpg?v=1719230132",
       "category": "Serum",
       "description": "Niacinamide serum with SPF protection for bright, even-toned skin."
     },
@@ -966,7 +966,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 8.0,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/garnier/cleanser_0097.jpg",
+      "image": "https://rukminim2.flixcart.com/image/480/640/xif0q/make-up-remover/u/j/k/-original-imahdchtvv9b5ggr.jpeg?q=90",
       "category": "Cleanser",
       "description": "Micelle-powered no-rinse cleanser that removes makeup and impurities gently."
     },
@@ -976,7 +976,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 7.8,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/garnier/serum_0098.jpg",
+      "image": "https://rukmini1.flixcart.com/image/1500/1500/xif0q/skin-treatment/2/f/t/-original-imah53tds4hssgvz.jpeg?q=70",
       "category": "Serum",
       "description": "Vitamin C serum-in-cream that brightens and moisturises skin simultaneously."
     },
@@ -986,7 +986,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 8.2,
       "eco": 7.0,
-      "image": "https://cdn.skinaura.in/products/garnier/moisturizer_0099.jpg",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs3f90YVmJ3xwqnPQxeiEdM7XF9-4XdxDM8w&s",
       "category": "Moisturizer",
       "description": "Hyaluronic acid sheet mask that delivers an intense moisture surge in 15 min."
     },
@@ -996,7 +996,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 7.2,
       "eco": 7.0,
-      "image": "https://cdn.skinaura.in/products/garnier/face_wash_0100.jpg",
+      "image": "https://m.media-amazon.com/images/I/71nbT2+9e8L.jpg",
       "category": "Face Wash",
       "description": "Neem and tea tree anti-blemish face wash for oily and acne-prone skin."
     },
@@ -1006,7 +1006,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 7.0,
       "eco": 6.2,
-      "image": "https://cdn.skinaura.in/products/garnier/sunscreen_0101.jpg",
+      "image": "https://m.media-amazon.com/images/I/61bWGPJO5dL._AC_UF1000,1000_QL80_.jpg",
       "category": "Sunscreen",
       "description": "High-protection SPF 50+ cream that shields from UVA, UVB, and pollution."
     },
@@ -1016,7 +1016,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 7.5,
       "eco": 6.8,
-      "image": "https://cdn.skinaura.in/products/garnier/serum_0102.jpg",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGOr-ZuTvpHg9xkvEKS3NvFBWCVtcHbQ0lsA&s",
       "category": "Serum",
       "description": "Vitamin C + lemon serum that fades dark spots and creates visible luminosity."
     },
@@ -1026,7 +1026,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 7.8,
       "eco": 7.0,
-      "image": "https://cdn.skinaura.in/products/garnier/serum_0103.jpg",
+      "image": "https://m.media-amazon.com/images/I/51Dcn5giaRL.jpg",
       "category": "Serum",
       "description": "Under-eye patches with hyaluronic acid that depuff and hydrate tired eyes."
     },
@@ -1036,7 +1036,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 7.0,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/garnier/cleanser_0104.jpg",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXAF8-VS1wBtBng1dqT-WOLurqScBTSBgcnw&s",
       "category": "Cleanser",
       "description": "Dual-acid cleanser that unclogs pores and removes blackheads effectively."
     },
@@ -1046,7 +1046,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 7.5,
       "eco": 6.8,
-      "image": "https://cdn.skinaura.in/products/loréal/serum_0105.jpg",
+      "image": "https://m.media-amazon.com/images/I/51Tlck-AU7L.jpg",
       "category": "Serum",
       "description": "Micro-essence with salicylic acid that exfoliates and refines skin texture."
     },
@@ -1056,7 +1056,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 7.0,
       "eco": 6.2,
-      "image": "https://cdn.skinaura.in/products/loréal/sunscreen_0106.jpg",
+      "image": "https://m.media-amazon.com/images/I/51zjZMJ9ntL.jpg",
       "category": "Sunscreen",
       "description": "Ultra-light SPF 50+ sunscreen with long UVA protection for daily wear."
     },
@@ -1066,7 +1066,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 6.8,
       "eco": 6.2,
-      "image": "https://cdn.skinaura.in/products/loréal/moisturizer_0107.jpg",
+      "image": "https://www.bbassets.com/media/uploads/p/l/40019407_4-loreal-paris-skin-perfect-20-anti-imperfections-cream.jpg",
       "category": "Moisturizer",
       "description": "Age-targeted anti-blemish cream that evens skin tone and reduces marks."
     },
@@ -1076,7 +1076,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 8.2,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/loréal/serum_0108.jpg",
+      "image": "https://cdn11.bigcommerce.com/s-ilgxsy4t82/images/stencil/1280x1280/products/284728/877816/41SD3DNZpCL__50096.1719829186.jpg?c=1&imbypass=on",
       "category": "Serum",
       "description": "Hyaluronic acid serum that replumps and smooths skin from the first use."
     },
@@ -1086,7 +1086,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 7.2,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/loréal/serum_0109.jpg",
+      "image": "https://m.media-amazon.com/images/I/41LIXFAVz2L.jpg",
       "category": "Serum",
       "description": "Glycolic acid night serum that resurfaces and brightens dull skin overnight."
     },
@@ -1096,7 +1096,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 7.5,
       "eco": 6.8,
-      "image": "https://cdn.skinaura.in/products/loréal/cleanser_0110.jpg",
+      "image": "https://m.media-amazon.com/images/I/51Obn117JpL.jpg",
       "category": "Cleanser",
       "description": "Three pure clays cleanser that draws out excess oil and tightens pores."
     },
@@ -1106,7 +1106,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 7.8,
       "eco": 7.0,
-      "image": "https://cdn.skinaura.in/products/loréal/serum_0111.jpg",
+      "image": "https://m.media-amazon.com/images/I/71zFmK5uBjL.jpg",
       "category": "Serum",
       "description": "Pro-Xylane + LHA serum that firms, retexturises, and reduces fine lines."
     },
@@ -1116,7 +1116,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 7.0,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/loréal/face_wash_0112.jpg",
+      "image": "https://m.media-amazon.com/images/I/51Obn117JpL.jpg",
       "category": "Face Wash",
       "description": "Clay-infused face wash that removes excess oil and keeps skin matte all day."
     },
@@ -1126,7 +1126,7 @@ PRODUCTS_DATA = {
       "brand": "Forest Essentials",
       "safety": 9.0,
       "eco": 9.2,
-      "image": "https://cdn.skinaura.in/products/forest_essentials/cleanser_0113.jpg",
+      "image": "https://img.forestessentialsindia.com/pub/media/catalog/product/8/9/8987_silkening_shower_wash_indian_rose_absolute_200ml_1.png",
       "category": "Cleanser",
       "description": "Luxury ayurvedic body wash with rose and jasmine for silky, fragrant skin."
     },
@@ -1136,7 +1136,7 @@ PRODUCTS_DATA = {
       "brand": "Forest Essentials",
       "safety": 9.2,
       "eco": 9.5,
-      "image": "https://cdn.skinaura.in/products/forest_essentials/cleanser_0114.jpg",
+      "image": "https://m.media-amazon.com/images/I/610g7EykTML._AC_UF350,350_QL80_.jpg",
       "category": "Cleanser",
       "description": "Cold-pressed oil cleansing formula that melts impurities and nourishes skin."
     },
@@ -1146,7 +1146,7 @@ PRODUCTS_DATA = {
       "brand": "Forest Essentials",
       "safety": 9.0,
       "eco": 9.2,
-      "image": "https://cdn.skinaura.in/products/forest_essentials/moisturizer_0115.jpg",
+      "image": "https://img.forestessentialsindia.com/pub/media/catalog/product/9/7/9780_hydrating_facial_moisturiser_sandalwood___orange_peel_130ml_1.png",
       "category": "Moisturizer",
       "description": "Ayurvedic gel moisturiser that cools, hydrates, and evens skin tone."
     },
@@ -1156,7 +1156,7 @@ PRODUCTS_DATA = {
       "brand": "Forest Essentials",
       "safety": 9.5,
       "eco": 9.5,
-      "image": "https://cdn.skinaura.in/products/forest_essentials/cleanser_0116.jpg",
+      "image": "https://img.forestessentialsindia.com/pub/media/catalog/product/8/8/8867_facial_tonic_mist_pure_rosewater_130ml_1.png",
       "category": "Cleanser",
       "description": "Distilled rose water that tones, refreshes, and balances skin pH beautifully."
     },
@@ -1166,7 +1166,7 @@ PRODUCTS_DATA = {
       "brand": "Forest essentials",
       "safety": 9.2,
       "eco": 9.0,
-      "image": "https://cdn.skinaura.in/products/forest_essentials/serum_0117.jpg",
+      "image": "https://images-static.nykaa.com/media/catalog/product/8/9/89ca3fa8904153388416_4.jpg?tr=w-500",
       "category": "Serum",
       "description": "24-karat gold-infused serum with ayurvedic herbs for luminous skin."
     },
@@ -1176,7 +1176,7 @@ PRODUCTS_DATA = {
       "brand": "Forest Essentials",
       "safety": 9.0,
       "eco": 9.2,
-      "image": "https://cdn.skinaura.in/products/forest_essentials/face_wash_0118.jpg",
+      "image": "https://img.forestessentialsindia.com/pub/media/catalog/product/cache/f8158826193ba5faa8b862a9bd1eb9e9/8/8/8880_delicate_facial_cleanser_mashobra_honey_lemon___rose_water_130ml_1.png",
       "category": "Face Wash",
       "description": "Mild honey and yogurt cleanser that purifies without stripping the skin."
     },
@@ -1186,7 +1186,7 @@ PRODUCTS_DATA = {
       "brand": "Forest Essentials",
       "safety": 8.8,
       "eco": 9.0,
-      "image": "https://cdn.skinaura.in/products/forest_essentials/sunscreen_0119.jpg",
+      "image": "https://m.media-amazon.com/images/I/71bR-kor9iL.jpg",
       "category": "Sunscreen",
       "description": "Ayurvedic SPF 25 cream enriched with saffron for a radiant, protected complexion."
     },
@@ -1196,7 +1196,7 @@ PRODUCTS_DATA = {
       "brand": "Forest Essentials",
       "safety": 9.2,
       "eco": 9.5,
-      "image": "https://cdn.skinaura.in/products/forest_essentials/moisturizer_0120.jpg",
+      "image": "https://img.forestessentialsindia.com/pub/media/catalog/product/cache/f8158826193ba5faa8b862a9bd1eb9e9/t/e/tejasvi_brightening_ghee_cream_9.jpg",
       "category": "Moisturizer",
       "description": "Pure ghee and herb-infused rich balm that repairs extremely dry skin."
     },
@@ -1206,7 +1206,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.5,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/himalaya/face_wash_0121.jpg",
+      "image": "https://m.media-amazon.com/images/I/71cmDCcHUCL._AC_UF1000,1000_QL80_.jpg",
       "category": "Face Wash",
       "description": "Orange peel and papaya wash that removes sun tan and refreshes skin."
     },
@@ -1216,7 +1216,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/himalaya/cleanser_0122.jpg",
+      "image": "https://images-static.nykaa.com/media/catalog/product/f/8/f8c4ddf8901138825379_1.jpg ",
       "category": "Cleanser",
       "description": "Saffron and walnut scrub that buffs away dullness and unclogs pores."
     },
@@ -1226,7 +1226,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.5,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/himalaya/moisturizer_0123.jpg",
+      "image": "https://m.media-amazon.com/images/I/51RbtUekuAL._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Wheat protein-rich conditioner that repairs and strengthens each strand."
     },
@@ -1236,7 +1236,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 8.0,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/himalaya/moisturizer_0124.jpg",
+      "image": "https://himalayawellness.in/cdn/shop/products/anti-wrinkle-cream.jpg?v=1622100480",
       "category": "Moisturizer",
       "description": "Grapes and horse chestnut cream that reduces fine lines and firms skin."
     },
@@ -1246,7 +1246,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.8,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/himalaya/sunscreen_0125.jpg",
+      "image": "https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/33431382/2025/4/21/53805fc4-f06c-4c90-a242-f867019642441745216665759-Himalaya-SunProtect-Ultra-Light-SPF50-PA-Sunscreen-with-Jojo-1.jpg",
       "category": "Sunscreen",
       "description": "SPF 50 cream with raspberry and aloevera for shielded, hydrated skin."
     },
@@ -1256,7 +1256,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/mamaearth/serum_0126.jpg",
+      "image": "https://images.mamaearth.in/catalog/product/2/_/2_ivory_glow.jpg?format=auto&height=600",
       "category": "Serum",
       "description": "Serum-foundation hybrid with turmeric extract for a radiant natural finish."
     },
@@ -1266,7 +1266,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/mamaearth/serum_0127.jpg",
+      "image": "https://m.media-amazon.com/images/I/51qMMpvzSYL.jpg",
       "category": "Serum",
       "description": "Fermented rice water serum that brightens, tightens, and softens skin."
     },
@@ -1276,7 +1276,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.0,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/mamaearth/serum_0128.jpg",
+      "image": "https://images.mamaearth.in/catalog/product/o/n/onion-hair-serum1200x1200_ad8hgvjdve7vcczs.jpg?format=auto&height=600",
       "category": "Serum",
       "description": "Onion juice serum that strengthens roots and reduces hair fall visibly."
     },
@@ -1286,7 +1286,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.5,
       "eco": 8.3,
-      "image": "https://cdn.skinaura.in/products/mamaearth/face_wash_0129.jpg",
+      "image": "https://images.mamaearth.in/catalog/product/u/b/ubtan-face-scrub.jpg?format=auto&height=600",
       "category": "Face Wash",
       "description": "Gentle exfoliating face wash that removes dead cells and reveals glow."
     },
@@ -1296,7 +1296,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.5,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/mamaearth/sunscreen_0130.jpg",
+      "image": "https://m.media-amazon.com/images/I/41aS+oSZu+L._SX522_.jpg",
       "category": "Sunscreen",
       "description": "Mineral SPF 55 sunscreen with zinc and turmeric; reef-safe and gentle."
     },
@@ -1306,7 +1306,7 @@ PRODUCTS_DATA = {
       "brand": "Mamaearth",
       "safety": 8.5,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/mamaearth/serum_0131.jpg",
+      "image": "https://images.mamaearth.in/catalog/product/g/r/green-tea-face-serum_2_white_bg.jpg?format=auto&height=600",
       "category": "Serum",
       "description": "Kaolin clay and niacinamide serum that minimises pores and controls shine."
     },
@@ -1316,7 +1316,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.5,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0132.jpg",
+      "image": "https://m.media-amazon.com/images/I/51eTNtZmQwL._AC_UF1000,1000_QL80_.jpg",
       "category": "Serum",
       "description": "Targeted serum for melasma and stubborn pigmentation reduction."
     },
@@ -1326,7 +1326,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.2,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0133.jpg",
+      "image": "https://rukminim2.flixcart.com/image/480/480/krce64w0/fairness/l/n/5/30-17-azeclair-anti-acne-face-serum-for-men-women-azelaic-acid-original-imag55qcnpdhcwqz.jpeg?q=90",
       "category": "Serum",
       "description": "Azelaic acid serum that reduces rosacea redness and blemish marks."
     },
@@ -1336,7 +1336,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 9.2,
       "eco": 9.0,
-      "image": "https://cdn.skinaura.in/products/minimalist/serum_0134.jpg",
+      "image": "https://m.media-amazon.com/images/I/51gRO13Q0+L.jpg",
       "category": "Serum",
       "description": "Panthenol and hyaluronic acid serum for calming and barrier-boosting hydration."
     },
@@ -1346,7 +1346,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/minimalist/moisturizer_0135.jpg",
+      "image": "https://m.media-amazon.com/images/I/51EeuzB4Q7L.jpg",
       "category": "Moisturizer",
       "description": "Ceramide-cholesterol-fatty acid moisturiser for chronically dry skin."
     },
@@ -1356,7 +1356,7 @@ PRODUCTS_DATA = {
       "brand": "Minimalist",
       "safety": 8.5,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/minimalist/sunscreen_0136.jpg",
+      "image": "https://m.media-amazon.com/images/I/51liYV8g2DL.jpg",
       "category": "Sunscreen",
       "description": "High-PA sunscreen with blue light protection for screen-heavy lifestyles."
     },
@@ -1366,7 +1366,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 8.8,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/moisturizer_0137.jpg",
+      "image": "https://m.media-amazon.com/images/I/61SX2RPObZL._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Aromatherapy body oil with jojoba and lavender for deep overnight repair."
     },
@@ -1376,7 +1376,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/serum_0138.jpg",
+      "image": "https://www.dotandkey.com/cdn/shop/files/1-1_b4ae866f-e0a8-43d1-971f-1d143d76f01c.jpg?v=1761888942",
       "category": "Serum",
       "description": "Vitamin C with kakadu plum that targets dullness and protects against UV stress."
     },
@@ -1386,7 +1386,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 8.2,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/sunscreen_0139.jpg",
+      "image": "hhttps://m.media-amazon.com/images/I/61VtiryMSLL._AC_UF1000,1000_QL80_.jpg",
       "category": "Sunscreen",
       "description": "Tinted dewy sunscreen that provides coverage and SPF 50 protection in one."
     },
@@ -1396,7 +1396,7 @@ PRODUCTS_DATA = {
       "brand": "Dot & Key",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/dot_and_key/serum_0140.jpg",
+      "image": "https://assets.myntassets.com/assets/images/12143884/2022/12/6/be83bea9-d052-4c91-8042-217bf122a13c1670315823980DotKeyHydroPeelGlowPotion10AHA2BHAExfoliatingSerum30ml5.jpg",
       "category": "Serum",
       "description": "Dual-acid exfoliant with green tea that resurfaces and brightens complexion."
     },
@@ -1406,7 +1406,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 8.5,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/cetaphil/sunscreen_0141.jpg",
+      "image": "https://m.media-amazon.com/images/I/61TGsEo0baL.jpg",
       "category": "Sunscreen",
       "description": "Oil-free SPF 30 moisturiser with niacinamide for shine control."
     },
@@ -1416,7 +1416,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 8.8,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/cetaphil/moisturizer_0142.jpg",
+      "image": "https://images-eu.ssl-images-amazon.com/images/I/61-lKA6IGKL._AC_UL210_SR210,210_.jpg",
       "category": "Moisturizer",
       "description": "Vitamin C and niacinamide cream that visibly brightens sensitive skin."
     },
@@ -1426,7 +1426,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 9.0,
       "eco": 8.2,
-      "image": "https://cdn.skinaura.in/products/cetaphil/moisturizer_0143.jpg",
+      "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRCDZLBbcOSpJqTiT8j8x-FllPikXwwNE_F4UgIG-kb3nUkWdtnXOYP6Q089Kz40DT2APQiYNJxnDcFFsym5rCmgM3Qr0dX_cMHGjKPZVfHLUN23xUr0yfBhk1prQVuAy_cCafN6vE&usqp=CAc",
       "category": "Moisturizer",
       "description": "Hyaluronic acid overnight cream for intense hydration of dry, sensitive skin."
     },
@@ -1436,7 +1436,7 @@ PRODUCTS_DATA = {
       "brand": "Cetaphil",
       "safety": 8.5,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/cetaphil/cleanser_0144.jpg",
+      "image": "https://m.media-amazon.com/images/I/71EsLmUqBeL._AC_UF1000,1000_QL80_.jpg",
       "category": "Cleanser",
       "description": "Pre-moistened cleansing wipes gentle enough for sensitive and baby skin."
     },
@@ -1446,7 +1446,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.8,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/plum/cleanser_0145.jpg",
+      "image": "https://www.bbassets.com/media/uploads/p/l/40140066_1-plum-chamomile-white-tea-calming-antioxidant-toner.jpg",
       "category": "Cleanser",
       "description": "Soothing toner with chamomile and white tea that calms redness and balances pH."
     },
@@ -1456,7 +1456,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.5,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/plum/moisturizer_0146.jpg",
+      "image": "https://m.media-amazon.com/images/I/41GrJSGpeQL._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Shea and mango butter body cream with vanilla for intense skin softening."
     },
@@ -1466,7 +1466,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 9.0,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/plum/cleanser_0147.jpg",
+      "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQ-0fp6KsZgvKIpBofSwgTiNRDMdcl5bbDQR0ULaSk0ET5JVm7dtv70DEC7_5sCQwoZJIhOl7XYEjtN78_LuHPvC4YsOoRmDA2MG0EHbrwjo52wpGDmITxfIiAYti3xmvMDyt7NyQ&usqp=CAc",
       "category": "Cleanser",
       "description": "Vitamin E cleansing milk that removes makeup gently without any drying."
     },
@@ -1476,7 +1476,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 9.0,
       "eco": 8.8,
-      "image": "https://cdn.skinaura.in/products/plum/serum_0148.jpg",
+      "image": "https://plumgoodness.com/cdn/shop/files/01_86a26ad1-16ca-4b25-b32a-1199e51991e4.jpg?v=1717760061&width=1214",
       "category": "Serum",
       "description": "Peptide-hyaluronic acid serum for plumping, firming, and deep hydration."
     },
@@ -1486,7 +1486,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/plum/serum_0149.jpg",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJfQ--RKiF7i7k268auKtooFVEyTP0Vh8IMg&s",
       "category": "Serum",
       "description": "0.1% retinol with peptides serum for gentle yet effective anti-ageing."
     },
@@ -1496,7 +1496,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/plum/moisturizer_0150.jpg",
+      "image": "https://plumgoodness.com/cdn/shop/files/02_bd36063d-362e-472b-b755-c220205e159b.jpg?v=1732282341&width=1214",
       "category": "Moisturizer",
       "description": "Lightweight night gel that purifies and renews skin as you sleep."
     },
@@ -1506,7 +1506,7 @@ PRODUCTS_DATA = {
       "brand": "Plum",
       "safety": 9.0,
       "eco": 9.0,
-      "image": "https://cdn.skinaura.in/products/plum/sunscreen_0151.jpg",
+      "image": "https://m.media-amazon.com/images/I/41jCdYmBfwL._AC_UF1000,1000_QL80_.jpg",
       "category": "Sunscreen",
       "description": "Zinc oxide mineral sunscreen that protects without chemicals; vegan formula."
     },
@@ -1516,7 +1516,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/serum_0152.jpg",
+      "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTF4MsWMq_TEm_mNgscO6A2vLnYNAEG2s6EeKsZH1j6fzskm06L0zVTSAWnCNC9hoHd5Udj-vMcvAFBQxJY-YKY4HdQbP-0dWG6WK8uMm5O8gIrnXJoDonpHM1AujNz0PKtSlrMGZQ&usqp=CAc",
       "category": "Serum",
       "description": "High-potency Vitamin C + retinol serum for firming and anti-ageing benefits."
     },
@@ -1526,7 +1526,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 7.8,
       "eco": 7.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/face_wash_0153.jpg",
+      "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhLrqVYOhu28aqfBsuguFB34PfEacL2Q-YzDMCoVHhDqnltCs1Bx-6UdN4DJZW3OTIfPLpkMVDX1U54l3o7UTtaDYqbsL-dWzaVjcbNvk8RsdRmn6IeHEZDx8gYIQpaH84nYOPaA&usqp=CAc",
       "category": "Face Wash",
       "description": "ACV face wash that balances skin pH and reduces acne and excess oil."
     },
@@ -1536,7 +1536,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.0,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/serum_0154.jpg",
+      "image": "https://m.media-amazon.com/images/I/81u6HwcU53L.jpg",
       "category": "Serum",
       "description": "Onion and black seed serum that reduces hair fall and boosts shine."
     },
@@ -1546,7 +1546,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.5,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/face_wash_0155.jpg",
+      "image": "https://m.media-amazon.com/images/I/613U-WsSNXL.jpg",
       "category": "Face Wash",
       "description": "Creamy coconut milk cleanser that moisturises while gently purifying skin."
     },
@@ -1556,7 +1556,7 @@ PRODUCTS_DATA = {
       "brand": "Wow Skin Science",
       "safety": 8.8,
       "eco": 8.5,
-      "image": "https://cdn.skinaura.in/products/wow_skin_science/moisturizer_0156.jpg",
+      "image": "https://m.media-amazon.com/images/I/71HZKw6N0kL.jpg",
       "category": "Moisturizer",
       "description": "Argan-enriched lightweight moisturiser that nourishes and adds natural radiance."
     },
@@ -1566,7 +1566,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 7.8,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/neutrogena/cleanser_0157.jpg",
+      "image": "https://images.ctfassets.net/bcjr30vxh6td/5U4uDYiyQv441H9iMXaK7R/f2def976de99faffb48e328439e9bacc/6811261_alt1?fm=webp&w=3840",
       "category": "Cleanser",
       "description": "Kaolin clay cleanser that absorbs oil and leaves skin feeling balanced."
     },
@@ -1576,7 +1576,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 7.2,
       "eco": 6.8,
-      "image": "https://cdn.skinaura.in/products/neutrogena/cleanser_0158.jpg",
+      "image": "https://m.media-amazon.com/images/I/61H0tRPyySL._AC_UF1000,1000_QL80_.jpg",
       "category": "Cleanser",
       "description": "AHA micro-polish that smooths and brightens skin for a more even texture."
     },
@@ -1586,7 +1586,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 7.2,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/neutrogena/sunscreen_0159.jpg",
+      "image": "https://images.ctfassets.net/f3tkdizvrgki/2M0YAX8sCXgVKwJ3U0usSM/7c3b2ce396303a1e8ff7d6de4cfc1cca/ntg_062600629678_ca_invisible_daily_def_ff_sunscreen_lotion_spf50_88ml_00000_1000wx1000h_fr-fr-ca?fm=webp&w=3840",
       "category": "Sunscreen",
       "description": "Ultra-sheer SPF 50+ formula that disappears on skin without white residue."
     },
@@ -1596,7 +1596,7 @@ PRODUCTS_DATA = {
       "brand": "Neutrogena",
       "safety": 8.8,
       "eco": 8.0,
-      "image": "https://cdn.skinaura.in/products/neutrogena/serum_0160.jpg",
+      "image": "https://m.media-amazon.com/images/I/71IbL9fw1pL.jpg",
       "category": "Serum",
       "description": "Hyaluronic acid concentrate serum that delivers long-lasting deep hydration."
     },
@@ -1606,7 +1606,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 7.8,
       "eco": 7.0,
-      "image": "https://cdn.skinaura.in/products/loréal/moisturizer_0161.jpg",
+      "image": "https://m.media-amazon.com/images/I/61LEwHOYyUL.jpg",
       "category": "Moisturizer",
       "description": "Aloe water gel moisturiser that provides 72-hour skin hydration."
     },
@@ -1616,7 +1616,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 8.5,
       "eco": 7.8,
-      "image": "https://cdn.skinaura.in/products/loréal/serum_0162.jpg",
+      "image": "https://m.media-amazon.com/images/I/51dyKxcQAaL.jpg",
       "category": "Serum",
       "description": "Concentrated HA serum that replumps and smooths skin from inside out."
     },
@@ -1626,7 +1626,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 6.5,
       "eco": 5.8,
-      "image": "https://cdn.skinaura.in/products/loréal/sunscreen_0163.jpg",
+      "image": "https://media6.ppl-media.com/tr:h-750,w-750,c-at_max,dpr-2,q-40/static/img/product/182723/loreal-paris-white-perfect-fairness-control-moisturizing-day-cream-spf-17-pa-50-ml_1_display_1489467354_6806ab23.jpg",
       "category": "Sunscreen",
       "description": "SPF 17 tinted moisturiser with melanin-block technology for even skin."
     },
@@ -1636,7 +1636,7 @@ PRODUCTS_DATA = {
       "brand": "L'Oréal",
       "safety": 7.5,
       "eco": 6.8,
-      "image": "https://cdn.skinaura.in/products/loréal/serum_0164.jpg",
+      "image": "https://images.apollo247.in/pub/media/catalog/product/l/o/lor0419_1_.jpg?tr=q-80,f-webp,w-400,dpr-3,c-at_max%20400w",
       "category": "Serum",
       "description": "Multi-action repair serum targeting dullness, pores, wrinkles, and spots."
     },
@@ -1646,7 +1646,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 7.8,
       "eco": 7.2,
-      "image": "https://cdn.skinaura.in/products/garnier/moisturizer_0165.jpg",
+      "image": "https://m.media-amazon.com/images/I/51kNSSK8NYL._AC_UF1000,1000_QL80_.jpg",
       "category": "Moisturizer",
       "description": "Vitamin C and yuzu lemon moisturiser that brightens dull and uneven skin."
     },
@@ -1656,7 +1656,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 7.0,
       "eco": 6.8,
-      "image": "https://cdn.skinaura.in/products/garnier/face_wash_0166.jpg",
+      "image": "https://rukminim2.flixcart.com/image/480/480/ktrk13k0/face-wash/v/r/k/150-skinactive-pure-active-3in1-cleanser-with-charcoal-150ml-original-imag7fk7y9xzrmh5.jpeg?q=90",
       "category": "Face Wash",
       "description": "Charcoal and salicylic acid wash that deeply purifies and controls acne."
     },
@@ -1666,7 +1666,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 6.8,
       "eco": 6.2,
-      "image": "https://cdn.skinaura.in/products/garnier/sunscreen_0167.jpg",
+      "image": "https://m.media-amazon.com/images/I/41pgitM1A8L.jpg",
       "category": "Sunscreen",
       "description": "All-in-one BB cream with SPF 24 that moisturises, corrects, and protects."
     },
@@ -1676,7 +1676,7 @@ PRODUCTS_DATA = {
       "brand": "Garnier",
       "safety": 7.2,
       "eco": 6.5,
-      "image": "https://cdn.skinaura.in/products/garnier/sunscreen_0168.jpg",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJaH-TkPKnehXzuYva9Cwovx-yPn4jw01ozg&s",
       "category": "Sunscreen",
       "description": "Serum-texture SPF 40 that brightens and protects for a no-filter glow."
     },
@@ -1686,7 +1686,7 @@ PRODUCTS_DATA = {
       "brand": "Ponds",
       "safety": 6.5,
       "eco": 6.0,
-      "image": "https://cdn.skinaura.in/products/ponds/face_wash_0169.jpg",
+      "image": "https://assets.myntassets.com/assets/images/324323/2023/3/23/4ec9f70c-1d6a-4c2b-aee5-9d724833c6171679560701263-Ponds-Men-Energy-Charge-Face-Wash-8291679560700722-1.jpg",
       "category": "Face Wash",
       "description": "Caffeine and activated charcoal face wash that energises tired-looking skin."
     },
@@ -1696,7 +1696,7 @@ PRODUCTS_DATA = {
       "brand": "Ponds",
       "safety": 6.8,
       "eco": 6.2,
-      "image": "https://cdn.skinaura.in/products/ponds/serum_0170.jpg",
+      "image": "https://m.media-amazon.com/images/I/51VCdx7eiLL.jpg",
       "category": "Serum",
       "description": "Niacinamide and vitamin B3 serum for visible spot reduction and glow."
     },
