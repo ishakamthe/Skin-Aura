@@ -6,7 +6,7 @@ PRODUCTS_DATA = {
       "brand": "Himalaya",
       "safety": 7.5,
       "eco": 7.0,
-      "image": "https://cdn.skinaura.in/products/himalaya/face_wash_0001.jpg",
+      "image": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/him/him50047/y/29.jpg",
       "category": "Face Wash",
       "description": "Deep-cleanses pores with neem and turmeric to combat acne and excess oil."
     },
