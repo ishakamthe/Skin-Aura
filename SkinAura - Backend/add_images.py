@@ -3,15 +3,13 @@ import json
 import urllib.parse
 
 def generate_image_url(product):
-    name = product.get("name", "")
-    brand = product.get("brand", "")
+    brand = product.get("brand", "Brand")
     
-    # Create search query
-    query = f"{brand} {name} skincare product"
-    encoded_query = urllib.parse.quote(query)
+    # URL encode the brand name so it's safe for a web link
+    encoded_text = urllib.parse.quote(brand)
 
-    # Google image search link
-    return f"https://www.google.com/search?tbm=isch&q={encoded_query}"
+    # This returns a real .png image file with the brand name written on it
+    return f"https://placehold.co/400x400/e2e8f0/1e293b.png?text={encoded_text}"
 
 def main():
     products = PRODUCTS_DATA["products"]
@@ -19,8 +17,9 @@ def main():
     for product in products:
         product["image"] = generate_image_url(product)
 
+    # Write back to a JSON file, or copy-paste the output back into your product.py
     with open("products_with_images.json", "w") as f:
-        json.dump(products, f, indent=2)
+        json.dump(PRODUCTS_DATA, f, indent=2)
 
     print(f"✅ Generated image links for {len(products)} products!")
 
