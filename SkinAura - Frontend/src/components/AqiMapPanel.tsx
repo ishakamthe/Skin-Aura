@@ -170,7 +170,7 @@ const AqiMapPanel = ({ isOpen, onClose }: AqiMapPanelProps) => {
 
   const productPool = allProducts.length > 0 ? allProducts : MOCK_PRODUCTS;
 
-  // AQI calculations and Product Logic
+  // AQI calculations and Smart SPF Logic
   const currentAqi = selectedStation
     ? selectedStation.dominantAvg
     : filteredStations.length
@@ -180,13 +180,31 @@ const AqiMapPanel = ({ isOpen, onClose }: AqiMapPanelProps) => {
   const severity = getSkinSeverity(currentAqi);
 
   const recommendedProducts = useMemo(() => {
+    // 1. Group products by category and sort by safety score (highest first)
+    const sunscreens = productPool.filter(p => p.category === "Sunscreen").sort((a, b) => b.safety - a.safety);
+    const cleansers = productPool.filter(p => ["Cleanser", "Face Wash"].includes(p.category)).sort((a, b) => b.safety - a.safety);
+    const serums = productPool.filter(p => p.category === "Serum").sort((a, b) => b.safety - a.safety);
+    const moisturizers = productPool.filter(p => p.category === "Moisturizer").sort((a, b) => b.safety - a.safety);
+
+    // 2. Identify High SPF vs Standard Daily SPF based on product name
+    const highSpfSunscreens = sunscreens.filter(p => p.name.includes("50") || p.name.includes("55") || p.name.includes("60"));
+    const dailySunscreens = sunscreens.filter(p => !p.name.includes("50") && !p.name.includes("55") && !p.name.includes("60"));
+
     if (severity === "low") {
-      return productPool.filter(p => ["Cleanser", "Face Wash"].includes(p.category)).slice(0, 3);
+      // Good AQI: Standard Daily SPF (like SPF 30) + Cleansers
+      const spf = dailySunscreens.length > 0 ? dailySunscreens[0] : sunscreens[0];
+      return [spf, ...cleansers.slice(0, 2)].filter(Boolean).slice(0, 3);
     }
+    
     if (severity === "moderate") {
-      return productPool.filter(p => ["Serum", "Sunscreen"].includes(p.category)).slice(0, 3);
+      // Moderate AQI: High Protection SPF (50+) + Antioxidant Serum + Cleanser
+      const spf = highSpfSunscreens.length > 0 ? highSpfSunscreens[0] : sunscreens[0];
+      return [spf, ...serums.slice(0, 1), ...cleansers.slice(0, 1)].filter(Boolean).slice(0, 3);
     }
-    return productPool.filter(p => ["Moisturizer"].includes(p.category)).slice(0, 3);
+    
+    // Poor/Severe AQI: High Protection SPF (50+) + Barrier Repair (Moisturizer) + Serum
+    const spf = highSpfSunscreens.length > 0 ? highSpfSunscreens[0] : sunscreens[0];
+    return [spf, ...moisturizers.slice(0, 1), ...serums.slice(0, 1)].filter(Boolean).slice(0, 3);
   }, [severity, productPool]);
 
   return (
@@ -456,7 +474,10 @@ const AqiMapPanel = ({ isOpen, onClose }: AqiMapPanelProps) => {
                 <div>
                   <h4 className="font-semibold text-sm text-foreground mb-1">Recommended Skin Protection</h4>
                   <p className="text-xs text-muted-foreground mb-3">
-                    Based on {getAqiLevel(currentAqi)} air quality (AQI: {currentAqi})
+                    Based on {getAqiLevel(currentAqi)} air quality (AQI: {currentAqi}).{" "}
+                    {severity === "high" && "High pollution depletes antioxidants and worsens UV damage. Use SPF 50+ and a thick barrier repair cream."}
+                    {severity === "moderate" && "Moderate pollution requires daily antioxidant serums and strong SPF 50+ protection."}
+                    {severity === "low" && "Air is clean. A gentle cleanser and standard daily SPF are sufficient."}
                   </p>
                   <div className="space-y-2">
                     {recommendedProducts.map((product) => (
