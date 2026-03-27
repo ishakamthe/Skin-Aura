@@ -7,8 +7,6 @@ import os
 import threading
 import uuid
 from pathlib import Path
-from dotenv import load_dotenv
-load_dotenv()
 
 import pipeline as ai_pipeline
 
