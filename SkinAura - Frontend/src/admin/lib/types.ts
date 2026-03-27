@@ -1,41 +1,37 @@
 export type IngredientSafety = "low" | "moderate" | "high" | "unknown";
 
 export interface Ingredient {
-  id?: number;
-  product_id?: number;
   name: string;
   safety: IngredientSafety;
   description: string;
 }
 
-export type ProductStatus = "processing" | "pending_review" | "approved" | "rejected" | "failed";
-
+// Pipeline step — backend sets this to "ready" immediately (no async AI pipeline)
 export type PipelineStep =
   | "queued"
   | "extracting_text"
   | "structuring_data"
   | "scoring"
-  | "ready"
-  | "failed";
+  | "ready";
 
+// Statuses the Flask backend uses
+export type ProductStatus = "approved" | "pending" | "rejected" | "failed";
+
+// Matches the shape Flask actually returns from /products and /admin/products/pending
 export interface Product {
   id: number;
-  name: string | null;
-  brand: string | null;
-  category: string | null;
-  description: string | null;
-  safety: number | null;
-  eco: number | null;
-  image_front: string | null;
-  image_back: string | null;
+  name: string;
+  brand: string;
+  category: string;
+  description: string;
+  safety: number;
+  eco: number;
+  image: string;
+  image_front?: string;
+  image_back?: string;
   status: ProductStatus;
-  pipeline_step: PipelineStep;
-  raw_text: string | null;
-  safety_reasoning: string | null;
-  eco_reasoning: string | null;
-  pipeline_error: string | null;
-  created_at: string;
-  updated_at: string;
+  pipeline_step?: PipelineStep;
+  pipeline_error?: string | null;
   ingredients: Ingredient[];
 }
 
@@ -44,8 +40,12 @@ export interface Stats {
   approved: number;
   pending: number;
   rejected: number;
-  processing: number;
-  recent: Product[];
+  recent: Array<{
+    id: number;
+    name: string | null;
+    brand: string | null;
+    status: ProductStatus;
+  }>;
 }
 
 export interface ApprovePayload {

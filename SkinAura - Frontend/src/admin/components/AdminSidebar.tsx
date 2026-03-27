@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, ScanLine, Clock, Package } from "lucide-react";
+import { LayoutDashboard, PlusCircle, Clock, Package } from "lucide-react";
 import clsx from "clsx";
 
 const NAV = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/scan", label: "Scan Product", icon: ScanLine },
+  { href: "/admin/scan", label: "Add Product", icon: PlusCircle },
   { href: "/admin/pending", label: "Pending Review", icon: Clock },
-  { href: "/admin/products", label: "Products", icon: Package },
+  { href: "/admin/products", label: "All Products", icon: Package },
 ];
 
 export default function AdminSidebar() {
@@ -60,7 +60,7 @@ export default function AdminSidebar() {
         >
           ← Back to main site
         </Link>
-        <p className="text-[11px] text-text-3 px-3">Ingestion Pipeline v1.0</p>
+        <p className="text-[11px] text-text-3 px-3">SkinAura Admin v1.0</p>
       </div>
     </aside>
   );

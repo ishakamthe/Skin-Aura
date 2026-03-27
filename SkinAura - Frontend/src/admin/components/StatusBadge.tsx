@@ -1,17 +1,17 @@
 import type { ProductStatus } from "../lib/types";
-import clsx from "clsx";
 
-const MAP: Record<ProductStatus, { label: string; cls: string }> = {
-  processing:     { label: "Processing",     cls: "text-info bg-info/10 border-info/20" },
-  pending_review: { label: "Pending Review", cls: "text-warning bg-warning/10 border-warning/20" },
-  approved:       { label: "Approved",       cls: "text-skin-safe border-skin-safe/20 bg-skin-safe/10" },
-  rejected:       { label: "Rejected",       cls: "text-danger bg-danger/10 border-danger/20" },
-  failed:         { label: "Failed",         cls: "text-danger bg-danger/10 border-danger/20" },
+const CONFIG: Record<ProductStatus, { label: string; className: string }> = {
+  approved: { label: "Approved", className: "bg-emerald-400/10 text-emerald-600 border-emerald-400/20" },
+  pending:  { label: "Pending",  className: "bg-yellow-400/10 text-yellow-600 border-yellow-400/20" },
+  rejected: { label: "Rejected", className: "bg-red-400/10 text-red-500 border-red-400/20" },
+  failed:   { label: "Failed",   className: "bg-red-500/10 text-red-400 border-red-500/20" },
 };
 
 export default function StatusBadge({ status }: { status: ProductStatus }) {
-  const { label, cls } = MAP[status] ?? MAP.failed;
+  const { label, className } = CONFIG[status] ?? CONFIG.pending;
   return (
-    <span className={clsx("badge border", cls)}>{label}</span>
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${className}`}>
+      {label}
+    </span>
   );
 }

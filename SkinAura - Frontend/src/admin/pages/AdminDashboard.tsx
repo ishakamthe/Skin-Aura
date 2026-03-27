@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Package, Clock, CheckCircle2, XCircle, ScanLine, ArrowRight } from "lucide-react";
+import { Package, Clock, CheckCircle2, XCircle, PlusCircle, ArrowRight } from "lucide-react";
 import { getStats } from "../lib/api";
 import type { Stats } from "../lib/types";
 import StatusBadge from "../components/StatusBadge";
@@ -35,10 +35,10 @@ export default function AdminDashboard() {
         <div className="admin-card p-6 border-danger/30 bg-danger/5 max-w-md">
           <p className="text-sm font-semibold text-danger">Could not reach backend</p>
           <p className="text-xs text-text-3 mt-1">
-            Set <code className="font-mono bg-surface-2 px-1 rounded">VITE_API_URL</code> in your Vercel environment variables to your Render backend URL.
+            Make sure Flask is running on <code className="font-mono bg-surface-2 px-1 rounded">http://localhost:5000</code>.
           </p>
           <code className="block mt-3 text-xs font-mono text-text-2 bg-surface-2 rounded-xl p-3">
-            VITE_API_URL=https://your-app.onrender.com
+            cd "SkinAura - Backend" && python app.py
           </code>
         </div>
       </div>
@@ -50,26 +50,26 @@ export default function AdminDashboard() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-text-1">Dashboard</h1>
-        <p className="text-sm text-text-3 mt-1">Product ingestion pipeline overview</p>
+        <p className="text-sm text-text-3 mt-1">Product catalog overview</p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <StatCard label="Total Products"  value={stats?.total ?? 0}    icon={Package}      color="bg-info/10 text-info" />
         <StatCard label="Pending Review"  value={stats?.pending ?? 0}  icon={Clock}        color="bg-warning/10 text-warning" />
-        <StatCard label="Approved"        value={stats?.approved ?? 0} icon={CheckCircle2} color="bg-skin-mint/15 text-skin-charcoal" />
+        <StatCard label="Approved"        value={stats?.approved ?? 0} icon={CheckCircle2} color="bg-emerald-400/10 text-emerald-600" />
         <StatCard label="Rejected"        value={stats?.rejected ?? 0} icon={XCircle}      color="bg-danger/10 text-danger" />
       </div>
 
       {/* Quick action */}
       <div className="admin-card p-5 mb-8 flex items-center justify-between">
         <div>
-          <p className="text-sm font-semibold text-text-1">Scan a new product</p>
-          <p className="text-xs text-text-3 mt-0.5">Upload front and back images to start the pipeline</p>
+          <p className="text-sm font-semibold text-text-1">Add a new product</p>
+          <p className="text-xs text-text-3 mt-0.5">Submit product details to the pending review queue</p>
         </div>
         <Link to="/admin/scan" className="btn-primary">
-          <ScanLine size={15} />
-          Start scan
+          <PlusCircle size={15} />
+          Add product
         </Link>
       </div>
 
@@ -93,7 +93,7 @@ export default function AdminDashboard() {
           </div>
         ) : stats.recent.length === 0 ? (
           <div className="admin-card p-8 text-center">
-            <p className="text-sm text-text-3">No products yet. Scan your first product to get started.</p>
+            <p className="text-sm text-text-3">No products yet. Add your first product to get started.</p>
           </div>
         ) : (
           <div className="space-y-2">
@@ -101,7 +101,7 @@ export default function AdminDashboard() {
               <div key={p.id} className="admin-card p-4 flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-text-1">{p.name ?? "Untitled"}</p>
-                  <p className="text-xs text-text-3 mt-0.5">{p.brand ?? "Unknown brand"} · {new Date(p.created_at).toLocaleString()}</p>
+                  <p className="text-xs text-text-3 mt-0.5">{p.brand ?? "Unknown brand"}</p>
                 </div>
                 <StatusBadge status={p.status} />
               </div>

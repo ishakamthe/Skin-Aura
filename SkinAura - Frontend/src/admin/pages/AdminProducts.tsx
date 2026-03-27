@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Package, RefreshCw, ShieldCheck, Leaf } from "lucide-react";
-import { getApprovedProducts, imageUrl } from "../lib/api";
+import { getApprovedProducts } from "../lib/api";
 import type { Product } from "../lib/types";
 import ScorePill from "../components/ScorePill";
 
@@ -13,7 +13,6 @@ const SAFETY_DOT: Record<string, string> = {
 
 function ProductRow({ product }: { product: Product }) {
   const [expanded, setExpanded] = useState(false);
-  const front = imageUrl(product.image_front);
 
   return (
     <div className="admin-card overflow-hidden">
@@ -22,8 +21,8 @@ function ProductRow({ product }: { product: Product }) {
         className="w-full flex items-center gap-4 p-4 hover:bg-surface-2 transition-colors text-left"
       >
         {/* Thumbnail */}
-        {front ? (
-          <img src={front} alt="" className="w-12 h-12 rounded-xl object-cover border border-border shrink-0" />
+        {product.image ? (
+          <img src={product.image} alt="" className="w-12 h-12 rounded-xl object-cover border border-border shrink-0" />
         ) : (
           <div className="w-12 h-12 rounded-xl bg-surface-2 border border-border shrink-0 flex items-center justify-center">
             <Package size={16} className="text-text-3" />
@@ -63,9 +62,6 @@ function ProductRow({ product }: { product: Product }) {
                 <p className="text-xs font-semibold text-text-3 uppercase tracking-wider">Safety</p>
               </div>
               <p className="text-xl font-bold text-text-1 mb-2">{product.safety ?? "—"}<span className="text-xs font-normal text-text-3">/10</span></p>
-              {product.safety_reasoning && (
-                <p className="text-xs text-text-3 leading-relaxed">{product.safety_reasoning}</p>
-              )}
             </div>
             <div className="bg-surface rounded-2xl p-4 border border-border">
               <div className="flex items-center gap-2 mb-2">
@@ -73,14 +69,11 @@ function ProductRow({ product }: { product: Product }) {
                 <p className="text-xs font-semibold text-text-3 uppercase tracking-wider">Eco</p>
               </div>
               <p className="text-xl font-bold text-text-1 mb-2">{product.eco ?? "—"}<span className="text-xs font-normal text-text-3">/10</span></p>
-              {product.eco_reasoning && (
-                <p className="text-xs text-text-3 leading-relaxed">{product.eco_reasoning}</p>
-              )}
             </div>
           </div>
 
           {/* Ingredients */}
-          {product.ingredients.length > 0 && (
+          {product.ingredients && product.ingredients.length > 0 && (
             <div>
               <p className="text-xs font-semibold text-text-3 uppercase tracking-wider mb-3">
                 Ingredients ({product.ingredients.length})
