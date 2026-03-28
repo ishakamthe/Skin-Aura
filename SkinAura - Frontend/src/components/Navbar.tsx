@@ -26,7 +26,7 @@ const Navbar = ({ searchQuery, onSearchChange, onOpenFilters, activeFilterCount 
       value={searchQuery}
       onChange={(e) => onSearchChange(e.target.value)}
       placeholder="Search skincare products..."
-      className="input-skin pl-11 pr-28 mx-px" />
+      className="input-skin !pl-11 !pr-28 mx-px" />
     
       <button
       onClick={onOpenFilters}
