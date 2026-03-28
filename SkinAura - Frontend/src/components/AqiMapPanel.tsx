@@ -330,7 +330,7 @@ const AqiMapPanel = ({ isOpen, onClose }: AqiMapPanelProps) => {
                       onFocus={() => setShowSuggestions(true)}
                       onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                       placeholder="Search city..."
-                      className="input-skin pl-10 pr-4 py-2.5 text-sm w-full"
+                      className="input-skin !pl-10 !pr-4 py-2.5 text-sm w-full"
                     />
                     {showSuggestions && cityFilter && (
                       <div className="absolute top-full mt-1 left-0 right-0 bg-card rounded-xl border border-border shadow-lg z-10 overflow-hidden">
