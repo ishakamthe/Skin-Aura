@@ -20,7 +20,7 @@ from openai import AsyncOpenAI
 
 logger = logging.getLogger(__name__)
 
-# ── OpenRouter client (same models as the original) ───────────────────────────
+# ── OpenRouter client ─────────────────────────────────────────────────────────
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
@@ -35,7 +35,7 @@ client = AsyncOpenAI(
     },
 )
 
-# ── Rubrics (copied verbatim from config.py) ──────────────────────────────────
+# ── Rubrics ───────────────────────────────────────────────────────────────────
 
 SAFETY_RUBRIC = """
 SAFETY SCORE (start at 8.0, clamp to 1.0–10.0):
@@ -76,22 +76,21 @@ Additions:
 - "Made with sustainable ingredients" or similar: +0.5
 """
 
-# ── Vision models (fallback chain, same as original) ─────────────────────────
+# ── Model fallback chains ─────────────────────────────────────────────────────
 
 VISION_MODELS_FALLBACK = [
     "google/gemma-3-27b-it:free",
     "mistralai/mistral-small-3.1-24b-instruct:free",
+    "meta-llama/llama-3.2-11b-vision-instruct:free",
     "google/gemma-3-12b-it:free",
 ]
-
-# ── Text models (fallback chain, same as original) ────────────────────────────
 
 REASONING_MODELS_FALLBACK = [
     "google/gemma-3-12b-it:free",
     "google/gemma-3-27b-it:free",
     "google/gemma-3-4b-it:free",
     "meta-llama/llama-3.3-70b-instruct:free",
-    "meta-llama/llama-3.1-8b-instruct:free",   # different provider than 3.2-3b
+    "meta-llama/llama-3.1-8b-instruct:free",
     "mistralai/mistral-small-3.1-24b-instruct:free",
     "qwen/qwen2.5-72b-instruct:free",
     "deepseek/deepseek-chat:free",
@@ -106,6 +105,46 @@ VISION_PROMPT = (
     "Label each section clearly (e.g. FRONT:, BACK:, INGREDIENTS:). "
     "Do not summarise or interpret — just extract the text."
 )
+
+# How long to wait before retrying a rate-limited model (seconds).
+# Index = attempt number (0-based), so waits are 2s, 4s, 8s, 16s, …
+# Capped at 30s for models late in the chain.
+_BACKOFF_BASE = 2
+_BACKOFF_CAP  = 30
+
+
+def _backoff(attempt: int) -> float:
+    return min(_BACKOFF_BASE ** (attempt + 1), _BACKOFF_CAP)
+
+
+def _is_rate_limited(response) -> bool:
+    """
+    Detect a 429 from OpenRouter.
+    The AsyncOpenAI client surfaces 429s in two ways:
+      1. An exception whose string contains "429".
+      2. A response with no choices and an error dict with code 429.
+    This helper handles case 2; case 1 is caught in the except block below.
+    """
+    if response.choices:
+        return False
+    try:
+        raw = response.model_dump()
+        err = raw.get("error") or {}
+        code = str(err.get("code", ""))
+        message = str(err.get("message", ""))
+        return code == "429" or "rate" in message.lower() or "rate-limited" in message.lower()
+    except Exception:
+        return False
+
+
+def _error_description(response) -> str:
+    """Extract a human-readable error string from a no-choices response."""
+    try:
+        raw = response.model_dump()
+        err = raw.get("error") or {}
+        return f"[{err.get('code', '?')}] {err.get('message', 'no choices returned')}"
+    except Exception:
+        return "no choices returned"
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -151,9 +190,10 @@ async def _extract_text_ocr(front_path: str, back_path: str) -> str:
     back_b64, back_mime = _image_to_base64(back_path)
 
     last_error = "Unknown error"
-    for model in VISION_MODELS_FALLBACK:
+
+    for attempt, model in enumerate(VISION_MODELS_FALLBACK):
         try:
-            logger.info("Vision OCR: trying model=%s", model)
+            logger.info("Vision OCR: trying model=%s (attempt %d)", model, attempt + 1)
             response = await client.chat.completions.create(
                 model=model,
                 messages=[{
@@ -166,22 +206,43 @@ async def _extract_text_ocr(front_path: str, back_path: str) -> str:
                 }],
                 max_tokens=2000,
             )
-            if not response.choices:
-                raw = response.model_dump()
-                err = raw.get("error") or {}
-                last_error = f"{model} [{err.get('code', '?')}]: {err.get('message', 'no choices')}"
-                logger.warning("Vision attempt failed: %s", last_error)
+
+            # ── 429 in response body (no exception raised) ────────────────
+            if _is_rate_limited(response):
+                wait = _backoff(attempt)
+                last_error = f"{model}: rate-limited (429) — waiting {wait}s"
+                logger.warning("Vision OCR rate-limited: %s", last_error)
+                if attempt < len(VISION_MODELS_FALLBACK) - 1:
+                    await asyncio.sleep(wait)
                 continue
+
+            # ── Any other error in response body ──────────────────────────
+            if not response.choices:
+                last_error = f"{model}: {_error_description(response)}"
+                logger.warning("Vision OCR failed (no choices): %s", last_error)
+                continue
+
             content = response.choices[0].message.content
             if not content:
                 last_error = f"{model}: empty content"
-                logger.warning("Vision attempt failed: %s", last_error)
+                logger.warning("Vision OCR failed: %s", last_error)
                 continue
-            logger.info("Vision OCR succeeded with model=%s, %d chars", model, len(content))
+
+            logger.info("Vision OCR succeeded: model=%s, chars=%d", model, len(content))
             return content
-        except Exception as e:
-            last_error = f"{model}: {e}"
-            logger.warning("Vision attempt exception: %s", last_error)
+
+        except Exception as exc:
+            exc_str = str(exc)
+            # ── 429 raised as an exception ────────────────────────────────
+            if "429" in exc_str or "rate" in exc_str.lower():
+                wait = _backoff(attempt)
+                last_error = f"{model}: rate-limited exception — waiting {wait}s — {exc_str}"
+                logger.warning("Vision OCR rate-limit exception: %s", last_error)
+                if attempt < len(VISION_MODELS_FALLBACK) - 1:
+                    await asyncio.sleep(wait)
+            else:
+                last_error = f"{model}: {exc_str}"
+                logger.warning("Vision OCR exception: %s", last_error)
             continue
 
     raise RuntimeError(f"Vision OCR failed across all models. Last error: {last_error}")
@@ -190,32 +251,55 @@ async def _extract_text_ocr(front_path: str, back_path: str) -> str:
 async def _call_text_model(prompt: str, max_tokens: int, step: str) -> str:
     """Call a text model with fallback across REASONING_MODELS_FALLBACK."""
     last_error = "Unknown error"
-    for model in REASONING_MODELS_FALLBACK:
+
+    for attempt, model in enumerate(REASONING_MODELS_FALLBACK):
         try:
-            logger.info("%s: trying model=%s", step, model)
+            logger.info("%s: trying model=%s (attempt %d)", step, model, attempt + 1)
             response = await client.chat.completions.create(
                 model=model,
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=max_tokens,
             )
-            if not response.choices:
-                raw = response.model_dump()
-                err = raw.get("error") or {}
-                last_error = f"{model} [{err.get('code', '?')}]: {err.get('message', 'no choices')}"
-                logger.warning("%s attempt failed: %s", step, last_error)
+
+            # ── 429 in response body ──────────────────────────────────────
+            if _is_rate_limited(response):
+                wait = _backoff(attempt)
+                last_error = f"{model}: rate-limited (429) — waiting {wait}s"
+                logger.warning("%s rate-limited: %s", step, last_error)
+                if attempt < len(REASONING_MODELS_FALLBACK) - 1:
+                    await asyncio.sleep(wait)
                 continue
+
+            # ── Any other error in response body ──────────────────────────
+            if not response.choices:
+                last_error = f"{model}: {_error_description(response)}"
+                logger.warning("%s failed (no choices): %s", step, last_error)
+                continue
+
             msg = response.choices[0].message
             content = msg.content or getattr(msg, "reasoning", None)
             if not content:
                 last_error = f"{model}: null content"
-                logger.warning("%s attempt failed: %s", step, last_error)
+                logger.warning("%s failed (null content): %s", step, last_error)
                 continue
-            logger.info("%s succeeded with model=%s", step, model)
+
+            logger.info("%s succeeded: model=%s", step, model)
             return content
-        except Exception as e:
-            last_error = f"{model}: {e}"
-            logger.warning("%s attempt exception: %s", step, last_error)
+
+        except Exception as exc:
+            exc_str = str(exc)
+            # ── 429 raised as an exception ────────────────────────────────
+            if "429" in exc_str or "rate" in exc_str.lower():
+                wait = _backoff(attempt)
+                last_error = f"{model}: rate-limited exception — waiting {wait}s — {exc_str}"
+                logger.warning("%s rate-limit exception: %s", step, last_error)
+                if attempt < len(REASONING_MODELS_FALLBACK) - 1:
+                    await asyncio.sleep(wait)
+            else:
+                last_error = f"{model}: {exc_str}"
+                logger.warning("%s exception: %s", step, last_error)
             continue
+
     raise RuntimeError(f"{step} failed across all models. Last error: {last_error}")
 
 
@@ -278,7 +362,7 @@ Return ONLY valid JSON (no markdown, no explanation):
     content = await _call_text_model(prompt, max_tokens=4000, step="scoring")
     result = _extract_json(content)
     result["safety"] = round(max(1.0, min(10.0, float(result.get("safety", 5.0)))), 1)
-    result["eco"] = round(max(1.0, min(10.0, float(result.get("eco", 5.0)))), 1)
+    result["eco"]    = round(max(1.0, min(10.0, float(result.get("eco",    5.0)))), 1)
     return result
 
 
@@ -287,8 +371,8 @@ Return ONLY valid JSON (no markdown, no explanation):
 async def _run_async(product: dict, ingredients_by_product: dict,
                      front_path: str, back_path: str):
     """
-    Full async pipeline.  Mutates `product` dict in-place so the frontend
-    polling endpoint (`/admin/products/<id>`) always sees the latest state.
+    Full async pipeline. Mutates `product` dict in-place so the frontend
+    polling endpoint (/admin/products/<id>) always sees the latest state.
     `ingredients_by_product` is the shared lookup dict from app.py.
     """
     product_id = product["id"]
@@ -301,9 +385,9 @@ async def _run_async(product: dict, ingredients_by_product: dict,
         product["pipeline_step"] = "structuring_data"
         structured = await _call_structure(raw_text)
 
-        product["name"] = structured.get("name", "")
-        product["brand"] = structured.get("brand", "")
-        product["category"] = structured.get("category", "Other")
+        product["name"]        = structured.get("name", "")
+        product["brand"]       = structured.get("brand", "")
+        product["category"]    = structured.get("category", "Other")
         product["description"] = structured.get("description", "")
 
         # Store ingredients in the shared lookup so the review card sees them
@@ -314,17 +398,19 @@ async def _run_async(product: dict, ingredients_by_product: dict,
         scores = await _call_scoring(structured)
 
         product["safety"] = scores["safety"]
-        product["eco"] = scores["eco"]
+        product["eco"]    = scores["eco"]
 
         # ── Done ──────────────────────────────────────────────────────────
-        product["pipeline_step"] = "ready"
+        product["pipeline_step"]  = "ready"
         product["pipeline_error"] = None
-        logger.info("Pipeline complete for product_id=%d  safety=%.1f  eco=%.1f",
-                    product_id, scores["safety"], scores["eco"])
+        logger.info(
+            "Pipeline complete for product_id=%d  safety=%.1f  eco=%.1f",
+            product_id, scores["safety"], scores["eco"],
+        )
 
     except Exception as exc:
-        product["pipeline_step"] = "ready"   # stop the spinner
-        product["status"] = "failed"
+        product["pipeline_step"]  = "ready"    # stop the spinner
+        product["status"]         = "failed"
         product["pipeline_error"] = str(exc)
         logger.error("Pipeline failed for product_id=%d: %s", product_id, exc)
         raise
